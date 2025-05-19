@@ -1,0 +1,24 @@
+.footer {
+  background-color: #6d166a; /* burdeos del logo */
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.socialLinks {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.socialLink {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.socialLink:hover {
+  color: #cae303; /* color detalle */
+}

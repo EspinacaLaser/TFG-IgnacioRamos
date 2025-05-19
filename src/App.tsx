@@ -1,17 +1,12 @@
-import React from 'react'
-import { BrowserRouter } from 'react-router-dom'
-import Header from './components/ui/header/Header'
-import Footer from './components/ui/footer/Footer'
-import AppRoutes from './routes/AppRoutes'
+import React from 'react';
+import AppRoutes from './routes/AppRoutes';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
+    <div>
       <AppRoutes />
-      <Footer />
-    </BrowserRouter>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
