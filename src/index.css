@@ -1,12 +1,8 @@
-/* src/index.css */
-:root {
-  --color-burdeos: #6d166a;
-  --color-amarillo: #cae303;
-  --color-blanco: #fff;
-  --color-gris: #f5f5f5;
-  --color-gris-oscuro: #242424;
-  --color-texto: #222;
-  --color-texto-secundario: #666;
-  --color-acento: #cae303;
-  --fuente-principal: 'Segoe UI', Arial, sans-serif;
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1;
 }

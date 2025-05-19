@@ -1,16 +1,15 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import NavItem from "./NavItem";
+import styles from "./Navbar.module.css";
 
-const Navbar = () => {
-  return (
-    <nav>
-      <ul style={{ display: 'flex', listStyle: 'none', gap: '1rem', margin: 0, padding: 0 }}>
-        <li><NavLink to="/cliente">Cliente</NavLink></li>
-        <li><NavLink to="/recepcionista">Recepcionista</NavLink></li>
-        <li><NavLink to="/admin">Admin</NavLink></li>
-      </ul>
-    </nav>
-  )
-}
+const Navbar = () => (
+  <nav className={styles.nav}>
+    <ul>
+      <NavItem name="Inicio" href="/cliente/home" />
+      <NavItem name="Reservas" href="/cliente/reservas" />
+      <NavItem name="Facturas" href="/cliente/facturas" />
+      <NavItem name="Perfil" href="/cliente/perfil" />
+    </ul>
+  </nav>
+);
 
-export default Navbar
+export default Navbar;

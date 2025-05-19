@@ -1,17 +1,12 @@
 .header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
   padding: 1rem 2rem;
-  background: linear-gradient(90deg, #6d166a 60%, #cae303 100%);
-  border-bottom: 2px solid #cae303;
-  color: white;
-  flex-wrap: wrap;
+  background: linear-gradient(90deg, var(--color-burdeos) 60%, var(--color-amarillo) 100%);
 }
-
-.logo {
-  display: flex;
-  align-items: center;
+.logo img {
+  height: 48px;
 }
 
 .navbar {
