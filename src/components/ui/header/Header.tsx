@@ -1,14 +1,15 @@
 import React from 'react'
-import Logo  from './Logo'
+import Logo from './Logo'
 import Navbar from './Navbar'
 import LoginButton from './LoginButton'
+import styles from './Header.module.css'
 
 const Header = () => {
   return (
-    <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 2rem', borderBottom: '1px solid #ccc' }}>
-      <Logo />
-      <Navbar />
-      <LoginButton />
+    <header className={styles.header}>
+      <div className={styles.logo}><Logo /></div>
+      <div className={styles.navbar}><Navbar /></div>
+      <div className={styles.loginButton}><LoginButton /></div>
     </header>
   )
 }

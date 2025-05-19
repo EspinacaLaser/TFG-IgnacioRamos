@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(90deg, #6d166a 60%, #cae303 100%);
+  border-bottom: 2px solid #cae303;
+  color: white;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.loginButton {
+  margin-left: 1rem;
+}
+
+@media (max-width: 700px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+    text-align: center;
+  }
+  .navbar {
+    justify-content: center;
+    margin: 1rem 0;
+  }
+  .loginButton {
+    margin: 0 auto;
+  }
+}

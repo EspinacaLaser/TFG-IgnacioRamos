@@ -1,24 +1,30 @@
 .footer {
-  background-color: #6d166a; /* burdeos del logo */
+  background: linear-gradient(90deg, #6d166a 60%, #cae303 100%);
   color: white;
-  padding: 1rem 2rem;
+  padding: 2rem 1rem 1rem 1rem;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  border-top: 2px solid #cae303;
 }
 
-.socialLinks {
-  margin-top: 0.5rem;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+.content {
+  margin-bottom: 0.5rem;
 }
 
-.socialLink {
-  color: white;
-  text-decoration: none;
-  transition: color 0.3s ease;
+nav a {
+  color: #fff;
+  margin: 0 0.5rem;
+  text-decoration: underline;
+  transition: color 0.2s;
 }
 
-.socialLink:hover {
-  color: #cae303; /* color detalle */
+nav a:hover {
+  color: #cae303;
+}
+
+@media (max-width: 700px) {
+  .footer {
+    font-size: 0.9rem;
+    padding: 1rem 0.5rem;
+  }
 }
