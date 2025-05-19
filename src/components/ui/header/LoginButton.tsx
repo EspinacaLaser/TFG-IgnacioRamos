@@ -1,21 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
-const LoginButton = () => {
-  return (
-    <Link to="/login">
-      <button style={{
-        padding: '0.5rem 1rem',
-        backgroundColor: '#6d166a',
-        color: 'white',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer'
-      }}>
-        Login
-      </button>
-    </Link>
-  )
-}
+const LoginButton = () => (
+  <Link to="/login">
+    <button className="ml-4 px-4 py-2 bg-[#6d166a] text-white rounded font-semibold hover:bg-yellow-300 hover:text-[#6d166a] transition">
+      Login
+    </button>
+  </Link>
+);
 
-export default LoginButton
+export default LoginButton;

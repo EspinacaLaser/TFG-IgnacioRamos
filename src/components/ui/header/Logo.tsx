@@ -1,14 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import logo from "../../../assets/react.svg"; // Cambia por tu logo real
 
-const Logo = () => {
-  return (
-    <div>
-      <Link to="/">
-        <img src="/logo.png" alt="Logo" style={{ height: '40px' }} />
-      </Link>
-    </div>
-  )
-}
+const Logo = () => (
+  <Link to="/">
+    <img src={logo} alt="Logo Hotel" className="h-12 w-auto rounded" />
+  </Link>
+);
 
-export default Logo
+export default Logo;

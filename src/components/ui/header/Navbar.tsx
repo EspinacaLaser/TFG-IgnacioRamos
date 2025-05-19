@@ -1,9 +1,8 @@
 import NavItem from "./NavItem";
-import styles from "./Navbar.module.css";
 
 const Navbar = () => (
-  <nav className={styles.nav}>
-    <ul>
+  <nav>
+    <ul className="flex gap-6 items-center text-lg">
       <NavItem name="Inicio" href="/cliente/home" />
       <NavItem name="Reservas" href="/cliente/reservas" />
       <NavItem name="Facturas" href="/cliente/facturas" />
