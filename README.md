@@ -88,4 +88,4 @@ La estructura general es la siguiente:
 
 ## 📄 Licencia
 
-Este proyecto se distribuye bajo la licencia MIT.
+Este proyecto se distribuye bajo la licencia de Ignacio
