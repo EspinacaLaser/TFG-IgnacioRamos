@@ -1,6 +1,10 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
+import ClienteLayout from '../layouts/ClienteLayout';
+import RecepcionistaLayout from '../layouts/RecepcionLayout';
+import AdminLayout from '../layouts/AdminLayout';
+
 import ClienteHome from '../pages/cliente/ClienteHome';
 import ClienteReservas from '../pages/cliente/ClienteReservas';
 import ClienteFacturas from '../pages/cliente/ClienteFacturas';
@@ -20,15 +24,25 @@ const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Navigate to="/login" replace />} />
     <Route path="/login" element={<Login />} />
-    <Route path="/cliente/home" element={<ClienteHome />} />
-    <Route path="/cliente/reservas" element={<ClienteReservas />} />
-    <Route path="/cliente/facturas" element={<ClienteFacturas />} />
-    <Route path="/recepcionista/home" element={<RecepcionistaHome />} />
-    <Route path="/recepcionista/reservas" element={<RecepcionistaReservas />} />
-    <Route path="/recepcionista/horario" element={<RecepcionistaHorario />} />
-    <Route path="/admin/home" element={<AdminHome />} />
-    <Route path="/admin/habitaciones" element={<AdminHabitaciones />} />
-    <Route path="/admin/horarios" element={<AdminHorarios />} />
+
+    <Route path="/cliente" element={<ClienteLayout children={undefined} />}>
+      <Route path="home" element={<ClienteHome />} />
+      <Route path="reservas" element={<ClienteReservas />} />
+      <Route path="facturas" element={<ClienteFacturas />} />
+    </Route>
+
+    <Route path="/recepcionista" element={<RecepcionistaLayout children={undefined} />}>
+      <Route path="home" element={<RecepcionistaHome />} />
+      <Route path="reservas" element={<RecepcionistaReservas />} />
+      <Route path="horario" element={<RecepcionistaHorario />} />
+    </Route>
+
+    <Route path="/admin" element={<AdminLayout children={undefined} />}>
+      <Route path="home" element={<AdminHome />} />
+      <Route path="habitaciones" element={<AdminHabitaciones />} />
+      <Route path="horarios" element={<AdminHorarios />} />
+    </Route>
+
     <Route path="*" element={<NotFound />} />
   </Routes>
 );
