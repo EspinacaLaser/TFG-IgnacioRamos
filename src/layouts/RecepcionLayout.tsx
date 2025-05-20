@@ -1,10 +1,10 @@
-import RecepcionistaHeader from "../components/ui/header/RecepcionistaHeader";
+import Header from "../components/ui/header/Header";
 import Footer from "../components/ui/footer/Footer";
 import { Outlet } from "react-router-dom";
 
 const RecepcionistaLayout = () => (
   <>
-    <RecepcionistaHeader />
+    <Header />
     <main className="flex-1">
       <Outlet />
     </main>

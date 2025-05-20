@@ -1,10 +1,10 @@
-import AdminHeader from "../components/ui/header/AdminHeader";
+import Header from "../components/ui/header/Header";
 import Footer from "../components/ui/footer/Footer";
 import { Outlet } from "react-router-dom";
 
 const AdminLayout = () => (
   <>
-    <AdminHeader />
+    <Header />
     <main className="flex-1">
       <Outlet />
     </main>

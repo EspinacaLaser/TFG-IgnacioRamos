@@ -1,4 +1,5 @@
-import React from 'react';
+// Description: This file contains the routing configuration for the application.
+// It uses React Router to define the routes for different user roles (Cliente, Recepcionista, Admin).
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import ClienteLayout from '../layouts/ClienteLayout';
