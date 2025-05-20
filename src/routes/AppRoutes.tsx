@@ -25,19 +25,19 @@ const AppRoutes = () => (
     <Route path="/" element={<Navigate to="/login" replace />} />
     <Route path="/login" element={<Login />} />
 
-    <Route path="/cliente" element={<ClienteLayout children={undefined} />}>
+    <Route path="/cliente" element={<ClienteLayout />}>
       <Route path="home" element={<ClienteHome />} />
       <Route path="reservas" element={<ClienteReservas />} />
       <Route path="facturas" element={<ClienteFacturas />} />
     </Route>
 
-    <Route path="/recepcionista" element={<RecepcionistaLayout children={undefined} />}>
+    <Route path="/recepcionista" element={<RecepcionistaLayout />}>
       <Route path="home" element={<RecepcionistaHome />} />
       <Route path="reservas" element={<RecepcionistaReservas />} />
       <Route path="horario" element={<RecepcionistaHorario />} />
     </Route>
 
-    <Route path="/admin" element={<AdminLayout children={undefined} />}>
+    <Route path="/admin" element={<AdminLayout />}>
       <Route path="home" element={<AdminHome />} />
       <Route path="habitaciones" element={<AdminHabitaciones />} />
       <Route path="horarios" element={<AdminHorarios />} />

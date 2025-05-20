@@ -1,10 +1,13 @@
 import Header from "../components/ui/header/Header";
 import Footer from "../components/ui/footer/Footer";
+import { Outlet } from "react-router-dom";
 
-const ClienteLayout = ({ children }: { children: React.ReactNode }) => (
+const ClienteLayout = () => (
   <>
     <Header />
-    <main className="flex-1">{children}</main>
+    <main className="flex-1">
+      <Outlet />
+    </main>
     <Footer />
   </>
 );
