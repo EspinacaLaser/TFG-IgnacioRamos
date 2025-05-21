@@ -1,10 +1,11 @@
 <?php
+<?php
 header('Content-Type: application/json');
 
 $host = "localhost";
 $user = "root";
 $pass = ""; // tu contraseña de MySQL, si tienes
-$db = "hotel"; // el nombre de tu base de datos
+$db = "gestion_hotel"; // el nombre de tu base de datos
 
 $conn = new mysqli($host, $user, $pass, $db);
 
