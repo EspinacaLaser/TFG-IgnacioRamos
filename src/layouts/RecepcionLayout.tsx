@@ -1,11 +1,12 @@
-import Header from "../components/ui/header/Header";
-import Footer from "../components/ui/footer/Footer";
+import React from "react";
 import { Outlet } from "react-router-dom";
+import RecepcionistaHeader from "../components/ui/header/RecepcionistaHeader";
+import Footer from "../components/ui/footer/Footer";
 
-const RecepcionistaLayout = () => (
+const RecepcionistaLayout: React.FC = () => (
   <>
-    <Header />
-    <main className="flex-1">
+    <RecepcionistaHeader />
+    <main className="bg-green-50 min-h-screen p-4">
       <Outlet />
     </main>
     <Footer />

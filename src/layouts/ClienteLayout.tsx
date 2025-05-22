@@ -1,11 +1,12 @@
+import React from "react";
+import { Outlet } from "react-router-dom";
 import Header from "../components/ui/header/Header";
 import Footer from "../components/ui/footer/Footer";
-import { Outlet } from "react-router-dom";
 
-const ClienteLayout = () => (
+const ClienteLayout: React.FC = () => (
   <>
     <Header />
-    <main className="flex-1">
+    <main className="bg-blue-50 min-h-screen p-4">
       <Outlet />
     </main>
     <Footer />

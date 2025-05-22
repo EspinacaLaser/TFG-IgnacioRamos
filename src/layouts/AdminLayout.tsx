@@ -1,11 +1,12 @@
-import Header from "../components/ui/header/Header";
-import Footer from "../components/ui/footer/Footer";
+import React from "react";
 import { Outlet } from "react-router-dom";
+import AdminHeader from "../components/ui/header/AdminHeader";
+import Footer from "../components/ui/footer/Footer";
 
-const AdminLayout = () => (
+const AdminLayout: React.FC = () => (
   <>
-    <Header />
-    <main className="flex-1">
+    <AdminHeader />
+    <main className="bg-yellow-50 min-h-screen p-4">
       <Outlet />
     </main>
     <Footer />
