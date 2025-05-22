@@ -1,5 +1,4 @@
 <?php
-<?php
 // Habilita CORS para permitir peticiones desde el frontend
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
