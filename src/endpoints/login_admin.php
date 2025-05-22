@@ -1,4 +1,15 @@
 <?php
+<?php
+// Habilita CORS para permitir peticiones desde el frontend
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+
+// Maneja la preflight request de CORS
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    exit(0);
+}
+
 header('Content-Type: application/json');
 
 // Permitir solo POST
