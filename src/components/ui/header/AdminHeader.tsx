@@ -1,10 +1,29 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const AdminHeader: React.FC = () => (
-  <header className="bg-yellow-600 text-white p-4 flex items-center justify-between">
-    <h1 className="text-xl font-bold">Panel Administración</h1>
-    {/* Aquí puedes poner el nombre del admin, botón de logout, etc. */}
-  </header>
-);
+const RecepcionistaHeader: React.FC = () => {
+  const navigate = useNavigate();
 
-export default AdminHeader;
+  const handleLogout = () => {
+    // Limpia el usuario autenticado (ajusta según tu lógica)
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
+  return (
+    <header className="bg-green-600 text-white p-4 flex items-center justify-between">
+      <div className="flex items-center gap-4">
+        <h1 className="text-xl font-bold">Panel Recepción</h1>
+        {/* Aquí podrías mostrar el nombre del usuario si lo tienes */}
+      </div>
+      <button
+        onClick={handleLogout}
+        className="bg-white text-green-700 px-4 py-2 rounded font-semibold hover:bg-green-100 transition"
+      >
+        Cerrar sesión
+      </button>
+    </header>
+  );
+};
+
+export default RecepcionistaHeader;
