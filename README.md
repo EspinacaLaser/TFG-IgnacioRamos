@@ -17,10 +17,10 @@ Aplicación web para la gestión integral de un hotel, desarrollada como Trabajo
 ├── public/
 ├── src/
 │   ├── assets/         # Imágenes, logos, etc.
-│   ├── components/     # Componentes reutilizables (Header, Footer, etc.)
+│   ├── components/     # Componentes reutilizables (Header, Footer, Login, etc.)
 │   ├── pages/          # Vistas por rol (cliente, recepcionista, admin, shared)
 │   ├── routes/         # Configuración de rutas
-│   ├── layouts/        # Layouts reutilizables (por rol, si aplica)
+│   ├── layouts/        # Layouts reutilizables (por rol)
 │   ├── services/       # Lógica de consumo de API
 │   └── App.tsx         # Componente raíz
 ├── index.html
@@ -71,10 +71,19 @@ Aplicación web para la gestión integral de un hotel, desarrollada como Trabajo
 ## 🧩 Características destacadas
 
 - **Diseño responsive y profesional** gracias a Tailwind CSS.
-- **Rutas protegidas** según el rol del usuario.
+- **Rutas protegidas** según el rol del usuario (cliente, recepcionista, admin).
 - **Componentes reutilizables** y estructura modular.
+- **Flujo de autenticación completo**: login y registro de clientes, login de personal autorizado, logout y protección de rutas.
+- **Visualización del usuario autenticado** en los headers de cada rol.
 - **Preparado para integración con backend PHP/MySQL**.
 - **Fácil de extender**: añade nuevos roles, páginas o componentes fácilmente.
+
+## 🔒 Seguridad y autenticación
+
+- El sistema guarda el usuario autenticado en `localStorage` tras el login.
+- Los layouts de cada rol protegen las rutas privadas y redirigen a `/login` si el usuario no está autenticado o no tiene el rol adecuado.
+- El nombre del usuario aparece en el header junto al botón de cerrar sesión.
+- El registro está disponible solo para clientes.
 
 ## 📄 Licencia
 

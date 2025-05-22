@@ -13,12 +13,19 @@ interface LoginFormProps {
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
+  // Estado para los campos del formulario
   const [email, setEmail] = useState("");
   const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
+  // Estado para mostrar errores
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  /**
+   * Maneja el envío del formulario de login.
+   * Llama al endpoint correspondiente según el rol seleccionado.
+   * Si el login es exitoso, guarda el usuario en localStorage y redirige.
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -26,6 +33,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
     let url = "";
     let body: any = {};
 
+    // Selecciona el endpoint y los datos según el tipo de usuario
     if (tipo === "cliente") {
       url = "http://localhost/hotel-api/login_cliente.php";
       body = { email, password };
@@ -38,6 +46,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
     }
 
     try {
+      // Realiza la petición al backend
       const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -45,8 +54,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
       });
       const data = await res.json();
       if (data.success) {
-        // Aquí puedes guardar el usuario en contexto o localStorage
-        // y redirigir según el rol
+        // Guarda el usuario autenticado en localStorage
+        localStorage.setItem("user", JSON.stringify(data.user));
+        // Redirige según el rol
         if (tipo === "cliente") navigate("/cliente/home");
         else if (subrol === "recepcionista") navigate("/recepcionista/home");
         else navigate("/admin/home");
@@ -60,6 +70,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      {/* Campo de email para clientes, usuario para personal */}
       {tipo === "cliente" ? (
         <InputField
           type="email"
@@ -79,6 +90,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
           required
         />
       )}
+      {/* Campo de contraseña */}
       <InputField
         type="password"
         value={password}
@@ -87,14 +99,16 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
         name="password"
         required
       />
+      {/* Botón para enviar el formulario */}
       <button
         type="submit"
         className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
       >
         Iniciar sesión
       </button>
+      {/* Mensaje de error si lo hay */}
       <ErrorMessage message={error} />
-      {/* Solo para clientes: botón de registro */}
+      {/* Solo para clientes: botón para ir a registro */}
       {tipo === "cliente" && (
         <button
           type="button"
