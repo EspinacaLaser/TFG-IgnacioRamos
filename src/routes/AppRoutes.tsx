@@ -10,6 +10,7 @@ import AdminLayout from '../layouts/AdminLayout';
 import ClienteHome from '../pages/cliente/ClienteHome';
 import ClienteReservas from '../pages/cliente/ClienteReservas';
 import ClienteFacturas from '../pages/cliente/ClienteFacturas';
+import ClienteHabitaciones from '../pages/cliente/Habitaciones'; // <-- Importa la página de habitaciones
 
 import RecepcionistaHome from '../pages/recepcion/RecepcionistaHome';
 import RecepcionistaReservas from '../pages/recepcion/RecepcionistaReservas';
@@ -20,7 +21,7 @@ import AdminHabitaciones from '../pages/admin/AdminHabitaciones';
 import AdminHorarios from '../pages/admin/AdminHorario';
 
 import Login from '../pages/shared/Login';
-import Registro from '../pages/shared/Registro'; // <-- Importa la página de registro
+import Registro from '../pages/shared/Registro';
 import NotFound from '../pages/shared/NotFound';
 
 const AppRoutes = () => (
@@ -37,6 +38,7 @@ const AppRoutes = () => (
     {/* Rutas privadas para clientes */}
     <Route path="/cliente" element={<ClienteLayout />}>
       <Route path="home" element={<ClienteHome />} />
+      <Route path="habitaciones" element={<ClienteHabitaciones />} /> {/* <-- Añadido */}
       <Route path="reservas" element={<ClienteReservas />} />
       <Route path="facturas" element={<ClienteFacturas />} />
     </Route>

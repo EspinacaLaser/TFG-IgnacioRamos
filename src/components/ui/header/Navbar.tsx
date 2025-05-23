@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 
 const navLinks = [
   { name: "Inicio", href: "/cliente/home" },
+  { name: "Habitaciones", href: "/cliente/habitaciones" }, // <-- Añadido aquí
   { name: "Reservas", href: "/cliente/reservas" },
   { name: "Facturas", href: "/cliente/facturas" },
   { name: "Perfil", href: "/cliente/perfil" },
