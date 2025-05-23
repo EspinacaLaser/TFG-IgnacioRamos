@@ -1,11 +1,23 @@
 import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 const LoginButton = () => (
-  <Link to="/login">
-    <button className="ml-4 px-4 py-2 bg-[#6d166a] text-white rounded font-semibold hover:bg-yellow-300 hover:text-[#6d166a] transition">
-      Login
-    </button>
-  </Link>
+  <Button
+    component={Link}
+    to="/login"
+    variant="contained"
+    color="primary"
+    sx={{
+      fontWeight: "bold",
+      borderRadius: 2,
+      px: 3,
+      py: 1,
+      ml: 2,
+      fontFamily: "'Montserrat', Arial, sans-serif",
+    }}
+  >
+    Login
+  </Button>
 );
 
 export default LoginButton;

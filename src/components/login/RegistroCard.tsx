@@ -3,10 +3,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
 
-/**
- * Componente reutilizable para encapsular el formulario de registro en una Card de MUI.
- * Centra el contenido horizontalmente y le da un aspecto moderno y profesional.
- */
 interface RegistroCardProps {
   children: React.ReactNode;
 }

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
 import logo from "../../../assets/react.svg"; // Cambia por tu logo real
 
 const Logo = () => (
   <Link to="/">
-    <img src={logo} alt="Logo Hotel" className="h-12 w-auto rounded" />
+    <Avatar src={logo} alt="Logo Hotel" sx={{ width: 48, height: 48, mr: 2, borderRadius: 2 }} />
   </Link>
 );
 

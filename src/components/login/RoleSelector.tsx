@@ -33,9 +33,9 @@ const RoleSelector: React.FC<RoleSelectorProps> = ({
     </Typography>
     {/* Selector principal: Cliente o Personal */}
     <Box display="flex" justifyContent="center" mb={tipo === "personal" ? 2 : 0}>
-      <Button
+            <Button
         variant={tipo === "cliente" ? "contained" : "outlined"}
-        color={tipo === "cliente" ? "primary" : "inherit"}
+        color="primary"
         onClick={() => setTipo("cliente")}
         sx={{
           px: 2.5,
@@ -51,7 +51,7 @@ const RoleSelector: React.FC<RoleSelectorProps> = ({
       </Button>
       <Button
         variant={tipo === "personal" ? "contained" : "outlined"}
-        color={tipo === "personal" ? "primary" : "inherit"}
+        color="primary"
         onClick={() => setTipo("personal")}
         sx={{
           px: 2.5,

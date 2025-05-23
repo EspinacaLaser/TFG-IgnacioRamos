@@ -97,20 +97,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
         required
       />
       {/* Botón de envío */}
-      <Button
+            <Button
         type="submit"
         variant="contained"
-        // Cambia el color de fondo y la tipografía usando sx
+        color="primary"
         sx={{
-          backgroundColor: "#6a1b9a", // morado intenso
-          color: "#fff",
-          fontFamily: "'Montserrat', Arial, sans-serif",
           fontWeight: "bold",
           letterSpacing: 1,
           fontSize: "1.1rem",
-          "&:hover": {
-            backgroundColor: "#4a148c", // morado más oscuro al pasar el ratón
-          },
+          // Elimina backgroundColor y fontFamily para usar el tema global
         }}
       >
         Iniciar sesión
