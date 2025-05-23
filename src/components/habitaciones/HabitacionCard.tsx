@@ -19,6 +19,7 @@ interface HabitacionCardProps {
 const HabitacionCard: React.FC<HabitacionCardProps> = ({
   numero, estado, capacidad, descripcion, imagenes, onDetalles, onReservar
 }) => {
+  console.log("Habitación", numero, "imagenes:", imagenes);
   const botonesDeshabilitados = estado === "mantenimiento" || estado === "ocupada";
 
   return (
