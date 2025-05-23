@@ -22,6 +22,9 @@ const Habitaciones: React.FC = () => {
           estado={h.estado}
           capacidad={h.capacidad}
           descripcion={h.descripcion}
+          imagenes={h.imagenes || []}
+          onDetalles={() => { /* TODO: implement details handler */ }}
+          onReservar={() => { /* TODO: implement reserve handler */ }}
         />
       ))}
     </Container>
