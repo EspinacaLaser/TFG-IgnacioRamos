@@ -14,7 +14,12 @@ const Login: React.FC = () => {
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow">
       <RoleSelector tipo={tipo} setTipo={setTipo} subrol={subrol} setSubrol={setSubrol} />
       <LoginForm tipo={tipo} subrol={subrol} />
+      <div className="bg-red-500 text-white p-4">
+  ¡Tailwind funciona!
+</div>
     </div>
+    
+    
   );
 };
 
