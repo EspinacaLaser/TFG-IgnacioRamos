@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import RoleSelector from "../../components/login/RoleSelector";
 import LoginForm from "../../components/login/LoginForm";
-
+import Button from '@mui/material/Button';
 /**
  * Página de login principal.
  * Gestiona el tipo de usuario y subrol, y muestra el formulario correspondiente.
@@ -14,12 +14,12 @@ const Login: React.FC = () => {
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow">
       <RoleSelector tipo={tipo} setTipo={setTipo} subrol={subrol} setSubrol={setSubrol} />
       <LoginForm tipo={tipo} subrol={subrol} />
-      <div className="bg-red-500 text-white p-4">
-  ¡Tailwind funciona!
-</div>
+      <Button variant="contained" color="primary">
+        Botón MUI
+      </Button>
     </div>
-    
-    
+
+
   );
 };
 
