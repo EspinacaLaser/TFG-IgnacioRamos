@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../components/ui/header/Header";
 import Footer from "../components/ui/footer/Footer";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 
 /**
  * Layout principal para la interfaz de cliente.
@@ -22,9 +24,11 @@ const ClienteLayout: React.FC = () => {
   return (
     <>
       <Header />
-      <main className="bg-blue-50 min-h-screen p-4">
-        <Outlet />
-      </main>
+      <Box sx={{ bgcolor: "blue.50", minHeight: "100vh", py: 4 }}>
+        <Container maxWidth="md">
+          <Outlet />
+        </Container>
+      </Box>
       <Footer />
     </>
   );

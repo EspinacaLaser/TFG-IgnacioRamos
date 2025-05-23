@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import InputField from "../../components/login/InputField";
 import ErrorMessage from "../../components/login/ErrorMessage";
 import { useNavigate } from "react-router-dom";
+import RegistroCard from "../../components/login/RegisterCard";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 /**
  * Página de registro de clientes.
@@ -43,9 +47,15 @@ const Registro: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow">
-      <h1 className="text-2xl font-bold mb-4">Registro de Cliente</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <RegistroCard>
+      <Typography variant="h5" align="center" fontWeight="bold" gutterBottom>
+        Registro de Cliente
+      </Typography>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}
+      >
         {/* Campo para el nombre */}
         <InputField
           type="text"
@@ -59,7 +69,7 @@ const Registro: React.FC = () => {
           type="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
-          placeholder="Email"
+          placeholder="Correo electrónico"
           required
         />
         {/* Campo para la contraseña */}
@@ -71,18 +81,41 @@ const Registro: React.FC = () => {
           required
         />
         {/* Botón para enviar el formulario */}
-        <button
+        <Button
           type="submit"
-          className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          variant="contained"
+          sx={{
+            backgroundColor: "#1976d2",
+            color: "#fff",
+            fontWeight: "bold",
+            letterSpacing: 1,
+            fontSize: "1.1rem",
+            fontFamily: "'Montserrat', Arial, sans-serif",
+            "&:hover": {
+              backgroundColor: "#115293",
+            },
+          }}
         >
           Registrarse
-        </button>
+        </Button>
+        {/* Botón para volver al inicio de sesión */}
+        <Button
+          type="button"
+          color="secondary"
+          onClick={() => navigate("/login")}
+        >
+          ¿Ya tienes cuenta? Inicia sesión
+        </Button>
         {/* Mensaje de error */}
         <ErrorMessage message={error} />
         {/* Mensaje de éxito */}
-        {success && <div className="text-green-600">{success}</div>}
-      </form>
-    </div>
+        {success && (
+          <Typography color="success.main" align="center" sx={{ mt: 1 }}>
+            {success}
+          </Typography>
+        )}
+      </Box>
+    </RegistroCard>
   );
 };
 

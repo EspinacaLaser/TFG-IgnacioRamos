@@ -1,8 +1,9 @@
 import React from "react";
+import TextField from "@mui/material/TextField";
 
 /**
- * Componente reutilizable para campos de entrada (input).
- * Permite personalizar tipo, valor, placeholder, etc.
+ * Componente reutilizable para campos de entrada de formularios.
+ * Utiliza el componente TextField de MUI para mantener la coherencia visual.
  */
 interface InputFieldProps {
   type: string;
@@ -21,14 +22,16 @@ const InputField: React.FC<InputFieldProps> = ({
   name,
   required = false,
 }) => (
-  <input
+  <TextField
     type={type}
     value={value}
     onChange={onChange}
     placeholder={placeholder}
     name={name}
     required={required}
-    className="border p-2 rounded w-full"
+    fullWidth
+    variant="outlined"
+    margin="normal"
     autoComplete={type === "password" ? "current-password" : "on"}
   />
 );

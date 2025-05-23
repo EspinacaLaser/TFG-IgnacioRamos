@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import InputField from "./InputField";
 import ErrorMessage from "./ErrorMessage";
 import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 
 /**
- * Formulario de login reutilizable.
- * Recibe el tipo de usuario y subrol para decidir a qué endpoint llamar.
+ * Formulario de login reutilizable para clientes y personal autorizado.
+ * Gestiona el envío de datos y muestra errores si los hay.
  */
 interface LoginFormProps {
   tipo: "cliente" | "personal";
@@ -13,18 +15,14 @@ interface LoginFormProps {
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
-  // Estado para los campos del formulario
   const [email, setEmail] = useState("");
   const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
-  // Estado para mostrar errores
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   /**
-   * Maneja el envío del formulario de login.
-   * Llama al endpoint correspondiente según el rol seleccionado.
-   * Si el login es exitoso, guarda el usuario en localStorage y redirige.
+   * Envía los datos del formulario al endpoint correspondiente según el rol.
    */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +31,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
     let url = "";
     let body: any = {};
 
-    // Selecciona el endpoint y los datos según el tipo de usuario
     if (tipo === "cliente") {
       url = "http://localhost/hotel-api/login_cliente.php";
       body = { email, password };
@@ -46,7 +43,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
     }
 
     try {
-      // Realiza la petición al backend
       const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -54,9 +50,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
       });
       const data = await res.json();
       if (data.success) {
-        // Guarda el usuario autenticado en localStorage
         localStorage.setItem("user", JSON.stringify(data.user));
-        // Redirige según el rol
         if (tipo === "cliente") navigate("/cliente/home");
         else if (subrol === "recepcionista") navigate("/recepcionista/home");
         else navigate("/admin/home");
@@ -69,14 +63,18 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+    >
       {/* Campo de email para clientes, usuario para personal */}
       {tipo === "cliente" ? (
         <InputField
           type="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
-          placeholder="Email"
+          placeholder="Correo electrónico"
           name="email"
           required
         />
@@ -90,7 +88,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
           required
         />
       )}
-      {/* Campo de contraseña */}
       <InputField
         type="password"
         value={password}
@@ -99,26 +96,38 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
         name="password"
         required
       />
-      {/* Botón para enviar el formulario */}
-      <button
+      {/* Botón de envío */}
+      <Button
         type="submit"
-        className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+        variant="contained"
+        // Cambia el color de fondo y la tipografía usando sx
+        sx={{
+          backgroundColor: "#6a1b9a", // morado intenso
+          color: "#fff",
+          fontFamily: "'Montserrat', Arial, sans-serif",
+          fontWeight: "bold",
+          letterSpacing: 1,
+          fontSize: "1.1rem",
+          "&:hover": {
+            backgroundColor: "#4a148c", // morado más oscuro al pasar el ratón
+          },
+        }}
       >
         Iniciar sesión
-      </button>
-      {/* Mensaje de error si lo hay */}
+      </Button>
+      {/* Mensaje de error si existe */}
       <ErrorMessage message={error} />
-      {/* Solo para clientes: botón para ir a registro */}
+      {/* Enlace a registro solo para clientes */}
       {tipo === "cliente" && (
-        <button
+        <Button
           type="button"
-          className="text-blue-600 underline"
+          color="secondary"
           onClick={() => navigate("/registro")}
         >
           ¿No tienes cuenta? Regístrate
-        </button>
+        </Button>
       )}
-    </form>
+    </Box>
   );
 };
 

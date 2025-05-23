@@ -1,47 +1,51 @@
-import Navbar from "./Navbar";
-import logo from "../../../assets/react.svg"; // Cambia por tu logo real
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
+import logo from "../../../assets/react.svg"; // Cambia por tu logo real
+import Navbar from "./Navbar";
 
-/**
- * Header principal para la interfaz de cliente.
- * Muestra el logo, el nombre de la app, el nombre del usuario autenticado y un botón para cerrar sesión.
- */
 const Header = () => {
   const navigate = useNavigate();
-
-  // Recupera el usuario autenticado desde localStorage
   const user = JSON.parse(localStorage.getItem("user") || "null");
 
   const handleLogout = () => {
-    // Limpia el usuario autenticado y redirige al login
     localStorage.removeItem("user");
     navigate("/login");
   };
 
   return (
-    <header className="bg-gradient-to-r from-[#6d166a] via-[#7e2b7a] to-[#cae303] px-4 py-3 flex flex-wrap items-center justify-between shadow-md">
-      <div className="flex items-center gap-3">
-        <img src={logo} alt="Logo Hotel" className="h-12 w-auto rounded" />
-        <span className="text-white text-2xl font-bold tracking-wide drop-shadow">
+    <AppBar position="static" color="secondary" elevation={3}>
+      <Toolbar>
+        <Avatar src={logo} alt="Logo Hotel" sx={{ width: 48, height: 48, mr: 2 }} />
+        <Typography variant="h5" sx={{ fontWeight: "bold", flexGrow: 1 }}>
           Hotel Gestión
-        </span>
-        {/* Muestra el nombre del usuario si está autenticado */}
+        </Typography>
         {user && (user.nombre || user.nombre_completo) && (
-          <span className="ml-4 text-white text-base">
+          <Typography sx={{ mr: 2 }}>
             Hola, {user.nombre || user.nombre_completo}
-          </span>
+          </Typography>
         )}
-      </div>
-      <div className="flex items-center gap-4 mt-2 md:mt-0">
-        <Navbar />
-        <button
-          onClick={handleLogout}
-          className="bg-white text-[#6d166a] px-4 py-2 rounded font-semibold hover:bg-[#cae303] hover:text-[#7e2b7a] transition text-sm md:text-base"
-        >
-          Cerrar sesión
-        </button>
-      </div>
-    </header>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <Navbar />
+          {/* Solo muestra el botón de cerrar sesión si hay usuario logueado */}
+          {user && (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleLogout}
+              sx={{ fontWeight: "bold" }}
+            >
+              Cerrar sesión
+            </Button>
+          )}
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 

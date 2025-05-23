@@ -1,8 +1,12 @@
 import React from "react";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 /**
  * Selector de rol para el login.
- * Permite elegir entre Cliente y Personal autorizado (Recepcionista/Admin).
+ * Permite elegir entre cliente y personal autorizado, y dentro de personal, entre recepcionista y administrador.
+ * El botón activo se resalta con color "primary" y el resto con "inherit".
  */
 interface RoleSelectorProps {
   tipo: "cliente" | "personal";
@@ -17,42 +21,89 @@ const RoleSelector: React.FC<RoleSelectorProps> = ({
   subrol,
   setSubrol,
 }) => (
-  <div className="mb-4">
-    <div className="flex gap-4 mb-2">
-      <button
-        type="button"
-        className={`px-4 py-2 rounded ${tipo === "cliente" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
+  <Box mb={3}>
+    {/* Título de identificación de rol */}
+    <Typography
+      variant="subtitle1"
+      align="center"
+      fontWeight="bold"
+      sx={{ mb: 2, letterSpacing: 1 }}
+    >
+      Identificación de rol
+    </Typography>
+    {/* Selector principal: Cliente o Personal */}
+    <Box display="flex" justifyContent="center" mb={tipo === "personal" ? 2 : 0}>
+      <Button
+        variant={tipo === "cliente" ? "contained" : "outlined"}
+        color={tipo === "cliente" ? "primary" : "inherit"}
         onClick={() => setTipo("cliente")}
+        sx={{
+          px: 2.5,
+          py: 0.7,
+          mx: 1,
+          borderRadius: 2,
+          fontWeight: "bold",
+          fontSize: "1rem",
+          minWidth: 120,
+        }}
       >
         Cliente
-      </button>
-      <button
-        type="button"
-        className={`px-4 py-2 rounded ${tipo === "personal" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
+      </Button>
+      <Button
+        variant={tipo === "personal" ? "contained" : "outlined"}
+        color={tipo === "personal" ? "primary" : "inherit"}
         onClick={() => setTipo("personal")}
+        sx={{
+          px: 2.5,
+          py: 0.7,
+          mx: 1,
+          borderRadius: 2,
+          fontWeight: "bold",
+          fontSize: "1rem",
+          minWidth: 120,
+        }}
       >
-        Personal autorizado
-      </button>
-    </div>
+        Personal
+      </Button>
+    </Box>
+    {/* Selector secundario: Recepcionista o Administrador */}
     {tipo === "personal" && (
-      <div className="flex gap-4">
-        <button
-          type="button"
-          className={`px-4 py-2 rounded ${subrol === "recepcionista" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+      <Box display="flex" justifyContent="center" mt={2}>
+        <Button
+          variant={subrol === "recepcionista" ? "contained" : "outlined"}
+          color={subrol === "recepcionista" ? "primary" : "inherit"}
           onClick={() => setSubrol("recepcionista")}
+          sx={{
+            px: 2,
+            py: 0.6,
+            mx: 1,
+            borderRadius: 2,
+            fontWeight: "bold",
+            fontSize: "0.97rem",
+            minWidth: 140,
+          }}
         >
           Recepcionista
-        </button>
-        <button
-          type="button"
-          className={`px-4 py-2 rounded ${subrol === "admin" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+        </Button>
+        <Button
+          variant={subrol === "admin" ? "contained" : "outlined"}
+          color={subrol === "admin" ? "primary" : "inherit"}
           onClick={() => setSubrol("admin")}
+          sx={{
+            px: 2,
+            py: 0.6,
+            mx: 1,
+            borderRadius: 2,
+            fontWeight: "bold",
+            fontSize: "0.97rem",
+            minWidth: 140,
+          }}
         >
           Administrador
-        </button>
-      </div>
+        </Button>
+      </Box>
     )}
-  </div>
+  </Box>
 );
 
 export default RoleSelector;

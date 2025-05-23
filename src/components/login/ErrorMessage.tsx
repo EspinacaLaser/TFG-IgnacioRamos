@@ -1,8 +1,9 @@
 import React from "react";
+import Alert from "@mui/material/Alert";
 
 /**
- * Componente para mostrar mensajes de error.
- * Recibe el mensaje como prop y lo muestra con estilos destacados.
+ * Componente para mostrar mensajes de error en formularios.
+ * Utiliza el componente Alert de MUI para destacar el mensaje.
  */
 interface ErrorMessageProps {
   message?: string;
@@ -11,9 +12,9 @@ interface ErrorMessageProps {
 const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
   if (!message) return null;
   return (
-    <div className="text-red-600 bg-red-100 border border-red-300 rounded px-3 py-2 my-2 text-sm">
+    <Alert severity="error" sx={{ my: 2 }}>
       {message}
-    </div>
+    </Alert>
   );
 };
 
