@@ -11,28 +11,20 @@ import CssBaseline from "@mui/material/CssBaseline";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#800020", // Burdeos
+      main: "#3a2c1a", // Marrón oscuro para header/footer
       contrastText: "#fff",
     },
     secondary: {
-      main: "#FFD700", // Dorado
-      contrastText: "#800020",
-    },
-    warning: {
-      main: "#5a0016", // Burdeos oscuro
-      contrastText: "#fff",
-    },
-    info: {
-      main: "#f5f5f5", // Gris claro
-      contrastText: "#800020",
+      main: "#d6c3a1", // Beige/dorado suave (tu logo)
+      contrastText: "#3a2c1a",
     },
     background: {
-      default: "#F9F6F2", // Fondo general
+      default: "#f9f6f2",
       paper: "#fff",
     },
     text: {
       primary: "#222",
-      secondary: "#800020",
+      secondary: "#3a2c1a",
     },
     success: {
       main: "#388e3c",
@@ -41,6 +33,14 @@ const theme = createTheme({
     error: {
       main: "#b71c1c",
       contrastText: "#fff",
+    },
+    warning: {
+      main: "#5a0016",
+      contrastText: "#fff",
+    },
+    info: {
+      main: "#f5f5f5",
+      contrastText: "#3a2c1a",
     },
   },
   typography: {

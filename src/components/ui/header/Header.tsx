@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Navbar from "./Navbar";
 import Logo from "./Logo";
@@ -35,19 +34,20 @@ const Header = () => {
 
   return (
     <AppBar position="static" color="secondary" elevation={3}>
-      <Toolbar>
+      <Toolbar
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 6,
+          minHeight: { xs: 64, md: 96 },
+        }}
+      >
         <Logo />
-        <Typography variant="h5" sx={{ fontWeight: "bold", flexGrow: 1 }}>
-          Hotel Gestión
-        </Typography>
-        {/* Navbar en escritorio */}
-        <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center", gap: 2 }}>
+        <Box sx={{ flex: 1, display: { xs: "none", md: "flex" }, justifyContent: "center" }}>
           <Navbar />
-          {user && (
-            <Typography sx={{ ml: 2, fontWeight: "bold", color: "primary.main" }}>
-              ¡Bienvenido, {user.nombre || user.nombre_completo || user.email}!
-            </Typography>
-          )}
+        </Box>
+        <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}>
           {user ? (
             <Button
               variant="contained"
@@ -82,9 +82,6 @@ const Header = () => {
         >
           <Box sx={{ p: 2 }}>
             <Logo />
-            <Typography variant="h6" fontWeight="bold" mb={2}>
-              Hotel Gestión
-            </Typography>
             <Divider />
             <List sx={{ mt: 1 }}>
               {navLinks.map(link => (
@@ -92,11 +89,6 @@ const Header = () => {
               ))}
             </List>
             <Divider sx={{ my: 1 }} />
-            {user && (
-              <Typography sx={{ mb: 2, mt: 1, fontWeight: "bold", color: "primary.main" }}>
-                ¡Bienvenido, {user.nombre || user.nombre_completo || user.email}!
-              </Typography>
-            )}
             {user ? (
               <Button
                 variant="contained"
