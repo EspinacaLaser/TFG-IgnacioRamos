@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from "react";
 import HabitacionCard from "../../components/habitaciones/HabitacionCard";
+import HabitacionDetalleModal from "../../components/habitaciones/HabitacionDetalleModal";
 import Container from "@mui/material/Container";
 import Hero from "../../components/habitaciones/Hero";
-// -----------------------------------------------------------------------------
 
 const Habitaciones: React.FC = () => {
   const [habitaciones, setHabitaciones] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [habitacionSeleccionada, setHabitacionSeleccionada] = useState<any>(null);
 
   useEffect(() => {
     fetch("http://localhost/hotel-api/habitaciones.php")
       .then(res => res.json())
       .then(data => setHabitaciones(data));
   }, []);
+
+  const handleDetalles = (habitacion: any) => {
+    setHabitacionSeleccionada(habitacion);
+    setModalOpen(true);
+  };
 
   return (
     <Container sx={{ mt: 4 }}>
@@ -27,10 +34,18 @@ const Habitaciones: React.FC = () => {
           capacidad={h.capacidad}
           descripcion={h.descripcion}
           imagenes={h.imagenes || []}
-          onDetalles={() => { /* TODO: implement details handler */ }}
+          onDetalles={() => handleDetalles(h)}
           onReservar={() => { /* TODO: implement reserve handler */ }}
         />
       ))}
+      {/* Modal de detalle */}
+      {habitacionSeleccionada && (
+        <HabitacionDetalleModal
+          open={modalOpen}
+          onClose={() => setModalOpen(false)}
+          habitacion={habitacionSeleccionada}
+        />
+      )}
     </Container>
   );
 };
