@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import HabitacionCard from "../../components/habitaciones/HabitacionCard";
 import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
+import Hero from "../../components/habitaciones/Hero";
+// -----------------------------------------------------------------------------
 
 const Habitaciones: React.FC = () => {
   const [habitaciones, setHabitaciones] = useState([]);
@@ -14,7 +15,10 @@ const Habitaciones: React.FC = () => {
 
   return (
     <Container sx={{ mt: 4 }}>
-      <Typography variant="h4" fontWeight="bold" mb={4}>Habitaciones disponibles</Typography>
+      <Hero
+        title="Habitaciones disponibles"
+        subtitle="Elige la habitación perfecta para tu estancia y disfruta de todas las comodidades."
+      />
       {habitaciones.map((h: any) => (
         <HabitacionCard
           key={h.id}

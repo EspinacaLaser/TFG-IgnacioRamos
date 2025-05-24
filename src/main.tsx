@@ -30,15 +30,15 @@ const theme = createTheme({
     },
     // Otros colores para estados (éxito, error, advertencia, info)
     success: {
-      main: "#388e3c",
-      contrastText: "#fff",
-    },
-    error: {
-      main: "#b71c1c",
+      main: "#388e3c", // Verde para disponible
       contrastText: "#fff",
     },
     warning: {
-      main: "#5a0016",
+      main: "#fbc02d", // Amarillo para mantenimiento
+      contrastText: "#fff",
+    },
+    error: {
+      main: "#b71c1c", // Rojo para ocupada
       contrastText: "#fff",
     },
     info: {
