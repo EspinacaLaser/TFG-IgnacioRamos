@@ -29,13 +29,13 @@ const Habitaciones: React.FC = () => {
       {habitaciones.map((h: any) => (
         <HabitacionCard
           key={h.id}
+          id={h.id}
           numero={h.numero}
           estado={h.estado}
           capacidad={h.capacidad}
           descripcion={h.descripcion}
           imagenes={h.imagenes || []}
           onDetalles={() => handleDetalles(h)}
-          onReservar={() => { }}
         />
       ))}
       {/* Modal de detalle */}

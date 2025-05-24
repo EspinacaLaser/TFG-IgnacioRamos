@@ -5,21 +5,33 @@ import ReservaResumenHabitacion from "../../components/reservas/ReservaResumenHa
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
-const PRECIO_BUFET = 8;
-const PRECIO_PARKING = 12;
-
 const ReservaDatosPersonales: React.FC = () => {
   const { habitacionId } = useParams();
   const [habitacion, setHabitacion] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [extras, setExtras] = useState({ bufet: false, parking: false });
 
+  // Scroll al top al montar el componente
   useEffect(() => {
-    // Cambia la URL según tu backend real
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  console.log("habitacionId param:", habitacionId);
+
+  useEffect(() => {
+    if (!habitacionId) {
+      console.warn("No se recibió habitacionId en la URL");
+      setLoading(false);
+      return;
+    }
     fetch(`http://localhost/hotel-api/habitacion.php?id=${habitacionId}`)
       .then(res => res.json())
       .then(data => {
         setHabitacion(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Error al obtener la habitación:", err);
         setLoading(false);
       });
   }, [habitacionId]);
@@ -32,7 +44,6 @@ const ReservaDatosPersonales: React.FC = () => {
     );
   }
 
-  // Si no hay datos, muestra mensaje de error
   if (!habitacion) {
     return <Box sx={{ mt: 8, textAlign: "center" }}>Habitación no encontrada</Box>;
   }
@@ -41,14 +52,13 @@ const ReservaDatosPersonales: React.FC = () => {
     <ReservaLayout
       izquierda={
         <ReservaResumenHabitacion
-          imagen={habitacion.imagen_destacada}
+          imagen={habitacion.imagenes && habitacion.imagenes.length > 0 ? `http://localhost${habitacion.imagenes[0]}` : ""}
           precioBase={habitacion.precio_base}
           extras={extras}
           onExtrasChange={setExtras}
         />
       }
       derecha={
-        // Aquí irá la columna derecha (formulario, etc.)
         <Box />
       }
     />

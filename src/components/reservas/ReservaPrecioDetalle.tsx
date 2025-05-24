@@ -1,28 +1,26 @@
-/**
- * Muestra el precio base, el IVA y el precio total de la reserva.
- * Suma los extras si están seleccionados.
- */
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 interface ReservaPrecioDetalleProps {
-  precioBase: number;
+  precioBase: number | string;
   extras: { bufet: boolean; parking: boolean };
 }
 
-const PRECIO_BUFET = 8; // Puedes ajustar estos valores
+const PRECIO_BUFET = 8;
 const PRECIO_PARKING = 12;
 
 const ReservaPrecioDetalle: React.FC<ReservaPrecioDetalleProps> = ({ precioBase, extras }) => {
-  const iva = +(precioBase * 0.10).toFixed(2);
+  // Asegúrate de que precioBase es un número
+  const base = Number(precioBase) || 0;
+  const iva = +(base * 0.10).toFixed(2);
   const extrasTotal =
     (extras.bufet ? PRECIO_BUFET : 0) + (extras.parking ? PRECIO_PARKING : 0);
-  const total = +(precioBase + iva + extrasTotal).toFixed(2);
+  const total = +(base + iva + extrasTotal).toFixed(2);
 
   return (
     <Box sx={{ width: "100%", mb: 2 }}>
       <Typography>
-        Precio base: <b>{precioBase.toFixed(2)} €</b>
+        Precio base: <b>{base.toFixed(2)} €</b>
       </Typography>
       <Typography>
         10% de IVA: <b>{iva.toFixed(2)} €</b>
