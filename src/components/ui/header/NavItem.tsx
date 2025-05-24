@@ -1,16 +1,20 @@
 import { NavLink } from "react-router-dom";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 
-type Props = { name: string; href: string };
+type Props = { name: string; href: string; drawer?: boolean };
 
-const AnimatedNavLink = styled(NavLink)(({ theme }) => ({
+const BURDEOS = "#800020";
+const MARRON_CLARO = "#6d4c2f";
+
+const AnimatedNavLink = styled(NavLink)<{ $color: string; $underline: string; $hover: string }>(({ $color, $underline, $hover }) => ({
   position: "relative",
-  color: "inherit",
+  color: $color,
   textDecoration: "none",
   fontWeight: "bold",
   padding: "8px 16px",
+  transition: "color 0.2s",
   "&:after": {
     content: '""',
     position: "absolute",
@@ -18,36 +22,61 @@ const AnimatedNavLink = styled(NavLink)(({ theme }) => ({
     bottom: 0,
     width: 0,
     height: 2,
-    background: theme.palette.primary.main,
+    background: $underline,
     transition: "all 0.3s cubic-bezier(.4,0,.2,1)",
     transform: "translateX(-50%)",
+  },
+  "&:hover": {
+    color: $hover,
+    background: "transparent",
   },
   "&:hover:after, &.active:after": {
     left: "0%",
     width: "100%",
     transform: "none",
   },
+  "&.active": {
+    color: $color,
+    background: "transparent",
+  },
 }));
 
-const NavItem = ({ name, href }: Props) => (
-  <ListItemButton
-    component={AnimatedNavLink}
-    to={href}
-    sx={{
-      borderRadius: 2,
-      px: 2,
-      py: 1,
-      bgcolor: "transparent",
-      color: "primary.contrastText",
-      fontWeight: "bold",
-      position: "relative",
-      "&:hover": {
+const NavItem = ({ name, href, drawer = false }: Props) => {
+  const theme = useTheme();
+  // Drawer: texto marrón oscuro, subrayado beige, hover igual
+  // Navbar normal: texto marrón oscuro, subrayado burdeos, hover marrón claro
+  const color = theme.palette.primary.main;
+  const underline = drawer ? theme.palette.secondary.main : BURDEOS;
+  const hover = drawer ? theme.palette.primary.main : MARRON_CLARO;
+
+  return (
+    <ListItemButton
+      component={AnimatedNavLink}
+      to={href}
+      $color={color}
+      $underline={underline}
+      $hover={hover}
+      sx={{
+        borderRadius: 2,
+        px: 2,
+        py: 1,
         bgcolor: "transparent",
-      },
-    }}
-  >
-    <ListItemText primary={name} />
-  </ListItemButton>
-);
+        color,
+        fontWeight: "bold",
+        position: "relative",
+        "&:hover": {
+          bgcolor: "transparent",
+        },
+        "&.Mui-selected": {
+          bgcolor: "transparent",
+        },
+      }}
+      disableRipple
+      disableTouchRipple
+    >
+      <ListItemText primary={name} />
+    </ListItemButton>
+  );
+};
 
 export default NavItem;

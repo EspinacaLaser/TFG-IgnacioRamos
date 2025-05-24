@@ -1,6 +1,32 @@
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Copyright from './Copyright';
+import { styled, useTheme } from "@mui/material/styles";
+
+// Link animado con subrayado desde el centro
+const AnimatedLink = styled(Link)(({ theme }) => ({
+  position: "relative",
+  color: "inherit",
+  fontWeight: "bold",
+  textDecoration: "none",
+  transition: "color 0.2s",
+  "&:after": {
+    content: '""',
+    position: "absolute",
+    left: "50%",
+    bottom: 0,
+    width: 0,
+    height: 2,
+    background: theme.palette.secondary.main,
+    transition: "all 0.3s cubic-bezier(.4,0,.2,1)",
+    transform: "translateX(-50%)",
+  },
+  "&:hover:after, &:focus:after": {
+    left: 0,
+    width: "100%",
+    transform: "none",
+  },
+}));
 
 const FooterBottom = () => (
   <Box
@@ -15,15 +41,15 @@ const FooterBottom = () => (
     }}
   >
     <Box sx={{ mb: 1, display: "flex", justifyContent: "center", gap: 3 }}>
-      <Link href="/cookies" underline="hover" color="inherit" sx={{ fontWeight: "bold" }}>
+      <AnimatedLink href="/cookies" underline="none">
         Cookies
-      </Link>
-      <Link href="/privacidad" underline="hover" color="inherit" sx={{ fontWeight: "bold" }}>
+      </AnimatedLink>
+      <AnimatedLink href="/privacidad" underline="none">
         Política de Privacidad
-      </Link>
-      <Link href="/atencion-cliente" underline="hover" color="inherit" sx={{ fontWeight: "bold" }}>
+      </AnimatedLink>
+      <AnimatedLink href="/atencion-cliente" underline="none">
         Atención al Cliente
-      </Link>
+      </AnimatedLink>
     </Box>
     <Copyright />
   </Box>

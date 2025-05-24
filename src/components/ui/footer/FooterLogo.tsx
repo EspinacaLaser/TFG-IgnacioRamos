@@ -1,5 +1,5 @@
 const FooterLogo = () => (
-  <img src="/logo192.png" alt="Hotel Gestión Logo" style={{ height: 64 }} />
+  <img src="../../logoHotel.png" alt="Hotel Gestión Logo" style={{ height: 200 }} />
 );
 
 export default FooterLogo;
