@@ -1,14 +1,32 @@
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
 import Copyright from './Copyright';
 
 const FooterBottom = () => (
-  <div className="bg-[#222] text-white/80 py-3 px-4 text-center border-t border-yellow-300">
-    <nav className="mb-1">
-      <a href="/cookies" className="underline hover:text-yellow-300 mx-2">Cookies</a>
-      <a href="/privacidad" className="underline hover:text-yellow-300 mx-2">Política de Privacidad</a>
-      <a href="/atencion-cliente" className="underline hover:text-yellow-300 mx-2">Atención al Cliente</a>
-    </nav>
+  <Box
+    sx={{
+      bgcolor: "primary.main",
+      color: "primary.contrastText",
+      py: 2,
+      px: 2,
+      textAlign: "center",
+      borderTop: "2px solid",
+      borderColor: "secondary.main",
+    }}
+  >
+    <Box sx={{ mb: 1, display: "flex", justifyContent: "center", gap: 3 }}>
+      <Link href="/cookies" underline="hover" color="inherit" sx={{ fontWeight: "bold" }}>
+        Cookies
+      </Link>
+      <Link href="/privacidad" underline="hover" color="inherit" sx={{ fontWeight: "bold" }}>
+        Política de Privacidad
+      </Link>
+      <Link href="/atencion-cliente" underline="hover" color="inherit" sx={{ fontWeight: "bold" }}>
+        Atención al Cliente
+      </Link>
+    </Box>
     <Copyright />
-  </div>
+  </Box>
 );
 
 export default FooterBottom;

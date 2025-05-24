@@ -1,19 +1,32 @@
 import FooterLogo from './FooterLogo';
 import FooterMapa from './FooterMapa';
 import FooterContacto from './FooterContacto';
+import Box from "@mui/material/Box";
 
 const FooterMain = () => (
-  <div className="bg-gradient-to-r from-[#6d166a] via-[#7e2b7a] to-[#cae303] text-white py-8 px-4 flex flex-col md:flex-row justify-between items-center">
-    <div className="w-full md:w-1/3 mb-6 md:mb-0">
+  <Box
+    sx={{
+      bgcolor: "secondary.main",
+      color: "secondary.contrastText",
+      py: 6,
+      px: { xs: 2, md: 6 },
+      display: "flex",
+      flexDirection: { xs: "column", md: "row" },
+      justifyContent: "space-between",
+      alignItems: "center",
+      gap: 4,
+    }}
+  >
+    <Box sx={{ flex: 1, display: "flex", justifyContent: { xs: "center", md: "flex-start" }, mb: { xs: 3, md: 0 } }}>
       <FooterContacto />
-    </div>
-    <div className="w-full md:w-1/3 flex justify-center mb-6 md:mb-0">
+    </Box>
+    <Box sx={{ flex: 1, display: "flex", justifyContent: "center", mb: { xs: 3, md: 0 } }}>
       <FooterMapa />
-    </div>
-    <div className="w-full md:w-1/3 flex justify-end">
+    </Box>
+    <Box sx={{ flex: 1, display: "flex", justifyContent: { xs: "center", md: "flex-end" } }}>
       <FooterLogo />
-    </div>
-  </div>
+    </Box>
+  </Box>
 );
 
 export default FooterMain;
