@@ -1,3 +1,8 @@
+/**
+ * BotonDetalles: botón para ver detalles de una habitación.
+ * Usa la fuente Montserrat y el color primario del tema.
+ * Se deshabilita si la habitación no está disponible.
+ */
 import Button from "@mui/material/Button";
 
 interface BotonDetallesProps {
@@ -11,7 +16,11 @@ const BotonDetalles: React.FC<BotonDetallesProps> = ({ onClick, disabled }) => (
     color="primary"
     onClick={onClick}
     disabled={disabled}
-    sx={{ fontWeight: "bold" }}
+    sx={{
+      fontWeight: "bold",
+      fontFamily: "'Montserrat', Arial, sans-serif",
+      letterSpacing: 1,
+    }}
   >
     Detalles
   </Button>

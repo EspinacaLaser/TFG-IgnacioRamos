@@ -1,3 +1,7 @@
+/**
+ * Botón de login reutilizable.
+ * Usa la fuente Montserrat y el color primario del tema.
+ */
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 

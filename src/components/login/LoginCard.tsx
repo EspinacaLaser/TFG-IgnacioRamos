@@ -1,3 +1,7 @@
+/**
+ * LoginCard: tarjeta contenedora para el formulario de login.
+ * Centra el contenido y aplica estilos de tarjeta de Material UI.
+ */
 import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";

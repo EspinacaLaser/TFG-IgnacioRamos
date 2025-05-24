@@ -1,3 +1,8 @@
+/**
+ * FooterMain: zona superior del footer.
+ * Incluye el logo, el mapa de ubicación y la información de contacto/redes sociales.
+ * Usa el color secundario del tema y adapta el layout según el tamaño de pantalla.
+ */
 import FooterLogo from './FooterLogo';
 import FooterMapa from './FooterMapa';
 import FooterContacto from './FooterContacto';
@@ -20,7 +25,6 @@ const FooterMain = () => (
     <Box sx={{ flex: 1, display: "flex", justifyContent: { xs: "center", md: "flex-start" } }}>
       <FooterLogo />
     </Box>
-    
     <Box sx={{ flex: 1, display: "flex", justifyContent: "center", mb: { xs: 3, md: 0 } }}>
       <FooterMapa />
     </Box>

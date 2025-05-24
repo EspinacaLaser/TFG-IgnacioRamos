@@ -1,3 +1,8 @@
+/**
+ * Logo de la aplicación.
+ * Muestra el logo en formato Avatar y lo enlaza a la página principal.
+ * El tamaño se adapta a la resolución.
+ */
 import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 

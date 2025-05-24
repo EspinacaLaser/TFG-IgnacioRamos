@@ -1,3 +1,8 @@
+/**
+ * BotonReservar: botón para reservar una habitación.
+ * Usa la fuente Montserrat y el color primario del tema.
+ * Se deshabilita si la habitación no está disponible.
+ */
 import Button from "@mui/material/Button";
 
 interface BotonReservarProps {
@@ -11,7 +16,11 @@ const BotonReservar: React.FC<BotonReservarProps> = ({ onClick, disabled }) => (
     color="primary"
     onClick={onClick}
     disabled={disabled}
-    sx={{ fontWeight: "bold" }}
+    sx={{
+      fontWeight: "bold",
+      fontFamily: "'Montserrat', Arial, sans-serif",
+      letterSpacing: 1,
+    }}
   >
     Reservar
   </Button>

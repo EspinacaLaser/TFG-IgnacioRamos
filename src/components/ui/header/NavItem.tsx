@@ -1,3 +1,8 @@
+/**
+ * NavItem: componente para cada enlace de navegación.
+ * Aplica subrayado animado y colores según si está en el Drawer o en el navbar normal.
+ * Usa la fuente Montserrat (por defecto en el theme).
+ */
 import { NavLink } from "react-router-dom";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
@@ -5,14 +10,17 @@ import { styled, useTheme } from "@mui/material/styles";
 
 type Props = { name: string; href: string; drawer?: boolean };
 
+// Colores personalizados para el subrayado y hover
 const BURDEOS = "#800020";
 const MARRON_CLARO = "#6d4c2f";
 
+// NavLink animado con subrayado desde el centro
 const AnimatedNavLink = styled(NavLink)<{ $color: string; $underline: string; $hover: string }>(({ $color, $underline, $hover }) => ({
   position: "relative",
   color: $color,
   textDecoration: "none",
   fontWeight: "bold",
+  fontFamily: "'Montserrat', Arial, sans-serif", // Fuente para nav items
   padding: "8px 16px",
   transition: "color 0.2s",
   "&:after": {
@@ -63,6 +71,7 @@ const NavItem = ({ name, href, drawer = false }: Props) => {
         bgcolor: "transparent",
         color,
         fontWeight: "bold",
+        fontFamily: "'Montserrat', Arial, sans-serif",
         position: "relative",
         "&:hover": {
           bgcolor: "transparent",

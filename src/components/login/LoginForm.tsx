@@ -1,3 +1,8 @@
+/**
+ * Formulario de login reutilizable para clientes y personal autorizado.
+ * Gestiona el envío de datos y muestra errores si los hay.
+ * Usa la fuente secundaria (Open Sans) para los campos y Montserrat para los botones.
+ */
 import React, { useState } from "react";
 import InputField from "./InputField";
 import ErrorMessage from "./ErrorMessage";
@@ -5,10 +10,6 @@ import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
-/**
- * Formulario de login reutilizable para clientes y personal autorizado.
- * Gestiona el envío de datos y muestra errores si los hay.
- */
 interface LoginFormProps {
   tipo: "cliente" | "personal";
   subrol: "recepcionista" | "admin";
@@ -97,7 +98,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
         required
       />
       {/* Botón de envío */}
-            <Button
+      <Button
         type="submit"
         variant="contained"
         color="primary"
@@ -105,7 +106,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
           fontWeight: "bold",
           letterSpacing: 1,
           fontSize: "1.1rem",
-          // Elimina backgroundColor y fontFamily para usar el tema global
+          fontFamily: "'Montserrat', Arial, sans-serif",
         }}
       >
         Iniciar sesión
@@ -118,6 +119,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
           type="button"
           color="secondary"
           onClick={() => navigate("/registro")}
+          sx={{ fontFamily: "'Montserrat', Arial, sans-serif" }}
         >
           ¿No tienes cuenta? Regístrate
         </Button>

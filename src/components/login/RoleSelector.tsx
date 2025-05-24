@@ -1,13 +1,13 @@
+/**
+ * Selector de rol para el login.
+ * Permite elegir entre cliente y personal autorizado, y dentro de personal, entre recepcionista y administrador.
+ * Los botones usan la fuente Montserrat (por defecto en el theme) y resaltan el rol activo.
+ */
 import React from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-/**
- * Selector de rol para el login.
- * Permite elegir entre cliente y personal autorizado, y dentro de personal, entre recepcionista y administrador.
- * El botón activo se resalta con color "primary" y el resto con "inherit".
- */
 interface RoleSelectorProps {
   tipo: "cliente" | "personal";
   setTipo: (tipo: "cliente" | "personal") => void;
@@ -27,13 +27,13 @@ const RoleSelector: React.FC<RoleSelectorProps> = ({
       variant="subtitle1"
       align="center"
       fontWeight="bold"
-      sx={{ mb: 2, letterSpacing: 1 }}
+      sx={{ mb: 2, letterSpacing: 1, fontFamily: "'Montserrat', Arial, sans-serif" }}
     >
       Identificación de rol
     </Typography>
     {/* Selector principal: Cliente o Personal */}
     <Box display="flex" justifyContent="center" mb={tipo === "personal" ? 2 : 0}>
-            <Button
+      <Button
         variant={tipo === "cliente" ? "contained" : "outlined"}
         color="primary"
         onClick={() => setTipo("cliente")}
@@ -45,6 +45,7 @@ const RoleSelector: React.FC<RoleSelectorProps> = ({
           fontWeight: "bold",
           fontSize: "1rem",
           minWidth: 120,
+          fontFamily: "'Montserrat', Arial, sans-serif",
         }}
       >
         Cliente
@@ -61,6 +62,7 @@ const RoleSelector: React.FC<RoleSelectorProps> = ({
           fontWeight: "bold",
           fontSize: "1rem",
           minWidth: 120,
+          fontFamily: "'Montserrat', Arial, sans-serif",
         }}
       >
         Personal
@@ -81,6 +83,7 @@ const RoleSelector: React.FC<RoleSelectorProps> = ({
             fontWeight: "bold",
             fontSize: "0.97rem",
             minWidth: 140,
+            fontFamily: "'Montserrat', Arial, sans-serif",
           }}
         >
           Recepcionista
@@ -97,6 +100,7 @@ const RoleSelector: React.FC<RoleSelectorProps> = ({
             fontWeight: "bold",
             fontSize: "0.97rem",
             minWidth: 140,
+            fontFamily: "'Montserrat', Arial, sans-serif",
           }}
         >
           Administrador

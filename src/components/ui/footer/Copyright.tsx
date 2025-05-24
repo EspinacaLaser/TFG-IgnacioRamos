@@ -1,3 +1,7 @@
+/**
+ * Copyright: muestra el aviso legal de derechos de autor.
+ * Usa la fuente secundaria (Open Sans) por defecto en <small>.
+ */
 const Copyright = () => {
   const year = new Date().getFullYear();
   return (

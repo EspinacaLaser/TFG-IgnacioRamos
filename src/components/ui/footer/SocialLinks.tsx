@@ -1,3 +1,7 @@
+/**
+ * SocialLinks: iconos de redes sociales con color marrón oscuro y animación de aclarado al hacer hover.
+ * Usa el color primario del tema y su variante clara para el hover.
+ */
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';

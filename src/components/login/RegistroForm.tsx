@@ -1,3 +1,8 @@
+/**
+ * Formulario de registro reutilizable para clientes.
+ * Gestiona el envío de datos y muestra errores si los hay.
+ * Usa la fuente secundaria (Open Sans) para los campos y Montserrat para los botones.
+ */
 import React, { useState } from "react";
 import InputField from "./InputField";
 import ErrorMessage from "./ErrorMessage";
@@ -5,10 +10,6 @@ import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
-/**
- * Formulario de registro reutilizable para clientes.
- * Gestiona el envío de datos y muestra errores si los hay.
- */
 const RegistroForm: React.FC = () => {
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
@@ -80,6 +81,7 @@ const RegistroForm: React.FC = () => {
           fontWeight: "bold",
           letterSpacing: 1,
           fontSize: "1.1rem",
+          fontFamily: "'Montserrat', Arial, sans-serif",
         }}
       >
         Registrarse
@@ -91,6 +93,7 @@ const RegistroForm: React.FC = () => {
         type="button"
         color="secondary"
         onClick={() => navigate("/login")}
+        sx={{ fontFamily: "'Montserrat', Arial, sans-serif" }}
       >
         ¿Ya tienes cuenta? Inicia sesión
       </Button>

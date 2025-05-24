@@ -1,13 +1,18 @@
+/**
+ * FooterBottom: zona inferior del footer.
+ * Incluye enlaces legales animados y el copyright.
+ * Los enlaces usan la fuente secundaria (Open Sans) por defecto en MUI Link.
+ */
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Copyright from './Copyright';
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 
 // Link animado con subrayado desde el centro
 const AnimatedLink = styled(Link)(({ theme }) => ({
   position: "relative",
   color: "inherit",
-  fontWeight: "bold",
+  fontWeight: "regular",
   textDecoration: "none",
   transition: "color 0.2s",
   "&:after": {

@@ -1,4 +1,10 @@
-import React, { useState } from "react";
+/**
+ * Header principal de la aplicación.
+ * Incluye el logo (generado con IA), la barra de navegación, el botón de 
+ * cerrar sesión y el menú hamburguesa para móvil.
+ * Utiliza el tema global de MUI para colores y tipografía.
+ */
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,6 +20,7 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import NavItem from "./NavItem";
 
+// Enlaces de navegación principales
 const navLinks = [
   { name: "Inicio", href: "/cliente/home" },
   { name: "Reservas", href: "/cliente/reservas" },
@@ -22,10 +29,14 @@ const navLinks = [
 ];
 
 const Header = () => {
+  // Hook de navegación de React Router
   const navigate = useNavigate();
+  // Recupera el usuario del localStorage (si está logeado)
   const user = JSON.parse(localStorage.getItem("user") || "null");
+  // Estado para controlar la apertura del Drawer (menú tipo hamburguesa)
   const [drawerOpen, setDrawerOpen] = useState(false);
 
+  // Cierra sesión y redirige al login
   const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/login");
@@ -33,7 +44,7 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="static" color="secondary" elevation={3}>
+    <AppBar position="static" color="secondary" elevation={2}>
       <Toolbar
         sx={{
           display: "flex",
@@ -43,17 +54,20 @@ const Header = () => {
           minHeight: { xs: 64, md: 96 },
         }}
       >
+        {/* Logo de la aplicación */}
         <Logo />
+        {/* Navbar visible solo en escritorio */}
         <Box sx={{ flex: 1, display: { xs: "none", md: "flex" }, justifyContent: "center" }}>
           <Navbar />
         </Box>
+        {/* Botón de cerrar sesión visible solo en escritorio */}
         <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}>
           {user ? (
             <Button
               variant="contained"
               color="primary"
               onClick={handleLogout}
-              sx={{ fontWeight: "bold" }}
+              sx={{ fontWeight: "bold", fontFamily: "'Montserrat', Arial, sans-serif" }}
             >
               Cerrar sesión
             </Button>
@@ -61,7 +75,7 @@ const Header = () => {
             <LoginButton />
           )}
         </Box>
-        {/* Burger menu en móvil */}
+        {/* Menú hamburguesa visible solo en móvil */}
         <Box sx={{ display: { xs: "flex", md: "none" } }}>
           <IconButton
             color="inherit"
@@ -72,12 +86,13 @@ const Header = () => {
             <MenuIcon />
           </IconButton>
         </Box>
+        {/* Drawer para navegación en móvil */}
         <Drawer
           anchor="right"
           open={drawerOpen}
           onClose={() => setDrawerOpen(false)}
-          PaperProps={{
-            sx: { width: 240, bgcolor: "background.paper" },
+          slotProps={{
+            paper: { sx: { width: 240, bgcolor: "background.paper" } },
           }}
         >
           <Box sx={{ p: 2 }}>
@@ -85,7 +100,7 @@ const Header = () => {
             <Divider />
             <List sx={{ mt: 1 }}>
               {navLinks.map(link => (
-                <NavItem key={link.name} name={link.name} href={link.href} />
+                <NavItem key={link.name} name={link.name} href={link.href} drawer />
               ))}
             </List>
             <Divider sx={{ my: 1 }} />
@@ -94,7 +109,7 @@ const Header = () => {
                 variant="contained"
                 color="primary"
                 onClick={handleLogout}
-                sx={{ fontWeight: "bold" }}
+                sx={{ fontWeight: "bold", fontFamily: "'Montserrat', Arial, sans-serif" }}
               >
                 Cerrar sesión
               </Button>

@@ -1,10 +1,11 @@
-import React from "react";
-import TextField from "@mui/material/TextField";
-
 /**
  * Componente reutilizable para campos de entrada de formularios.
  * Utiliza el componente TextField de MUI para mantener la coherencia visual.
+ * Usa la fuente secundaria (Open Sans) por defecto según el theme.
  */
+import React from "react";
+import TextField from "@mui/material/TextField";
+
 interface InputFieldProps {
   type: string;
   value: string;
@@ -33,6 +34,7 @@ const InputField: React.FC<InputFieldProps> = ({
     variant="outlined"
     margin="normal"
     autoComplete={type === "password" ? "current-password" : "on"}
+    // La fuente se aplica automáticamente por el theme (Open Sans para body1)
   />
 );
 

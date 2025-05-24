@@ -1,8 +1,12 @@
+/**
+ * FooterContacto: muestra el teléfono de contacto y los iconos de redes sociales.
+ * El teléfono tiene animación de subrayado y usa la fuente secundaria (Open Sans) por defecto en Typography.
+ */
 import SocialLinks from './SocialLinks';
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 
 // Link animado para el teléfono
 const AnimatedLink = styled(Link)(({ theme }) => ({

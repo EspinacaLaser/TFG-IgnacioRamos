@@ -1,37 +1,32 @@
-import React, { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+/**
+ * ClienteLayout: layout principal para la interfaz de cliente.
+ * Incluye el header, el footer y un contenedor principal para las páginas.
+ * Aplica el fondo y el padding global.
+ */
+import React from "react";
 import Header from "../components/ui/header/Header";
 import Footer from "../components/ui/footer/Footer";
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+import { Outlet } from "react-router-dom";
 
-/**
- * Layout principal para la interfaz de cliente.
- * Protege las rutas privadas comprobando que el usuario esté autenticado y tenga rol de cliente.
- */
-const ClienteLayout: React.FC = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Recupera el usuario autenticado desde localStorage
-    const user = JSON.parse(localStorage.getItem("user") || "null");
-    // Si no hay usuario o el rol no es cliente, redirige al login
-    if (!user || user.rol !== "cliente") {
-      navigate("/login");
-    }
-  }, [navigate]);
-
-  return (
-    <>
-      <Header />
-      <Box sx={{ bgcolor: "blue.50", minHeight: "100vh", py: 4 }}>
-        <Container maxWidth="md">
-          <Outlet />
-        </Container>
-      </Box>
-      <Footer />
-    </>
-  );
-};
+const ClienteLayout: React.FC = () => (
+  <>
+    <Header />
+    <Box
+      component="main"
+      sx={{
+        bgcolor: "background.default",
+        minHeight: "80vh",
+        px: { xs: 1, md: 4 },
+        py: { xs: 2, md: 4 },
+        fontFamily: "'Open Sans', Arial, sans-serif",
+        mt: { xs: 1, md: 2 }, // Añade separación arriba
+      }}
+    >
+      <Outlet />
+    </Box>
+    <Footer />
+  </>
+);
 
 export default ClienteLayout;
