@@ -5,16 +5,16 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import BotonDetalles from "./BotonDetalles";
 import BotonReservar from "./BotonReservar";
-import { useTheme } from "@mui/material/styles"; // <--- Importa useTheme
+import { useTheme } from "@mui/material/styles";
 
 interface HabitacionCardProps {
+  id: number;
   numero: string;
   estado: string;
   capacidad: number;
   descripcion: string;
   imagenes: string[];
   onDetalles: () => void;
-  onReservar: () => void;
 }
 
 const estadoColor = (estado: string, theme: any) => {
@@ -25,10 +25,10 @@ const estadoColor = (estado: string, theme: any) => {
 };
 
 const HabitacionCard: React.FC<HabitacionCardProps> = ({
-  numero, estado, capacidad, descripcion, imagenes, onDetalles, onReservar
+  id, numero, estado, capacidad, descripcion, imagenes, onDetalles
 }) => {
   const botonesDeshabilitados = estado === "mantenimiento" || estado === "ocupada";
-  const theme = useTheme(); // <--- Usa el hook correctamente
+  const theme = useTheme();
 
   return (
     <Card
@@ -50,7 +50,6 @@ const HabitacionCard: React.FC<HabitacionCardProps> = ({
         />
       )}
       <CardContent>
-        {/* Título más grande con Montserrat */}
         <Typography
           variant="h5"
           fontWeight={800}
@@ -58,13 +57,12 @@ const HabitacionCard: React.FC<HabitacionCardProps> = ({
         >
           Habitación {numero}
         </Typography>
-        {/* Estado coloreado solo en la palabra */}
         <Typography
           sx={{
             mb: 1,
             fontWeight: "bold",
             fontFamily: "'Open Sans', Arial, sans-serif",
-            color: "text.primary", // Color base para "Estado:"
+            color: "text.primary",
           }}
         >
           Estado:{" "}
@@ -80,7 +78,10 @@ const HabitacionCard: React.FC<HabitacionCardProps> = ({
         </Typography>
         <Box sx={{ mt: 2, display: "flex", gap: 2 }}>
           <BotonDetalles onClick={onDetalles} disabled={botonesDeshabilitados} />
-          <BotonReservar onClick={onReservar} disabled={botonesDeshabilitados} />
+          <BotonReservar
+            habitacionId={id}
+            disabled={botonesDeshabilitados}
+          />
         </Box>
       </CardContent>
     </Card>

@@ -24,6 +24,9 @@ import Login from '../pages/shared/Login';
 import Registro from '../pages/shared/Registro';
 import NotFound from '../pages/shared/NotFound';
 
+import ReservaDatosPersonales from '../pages/cliente/ReservaDatosPersonales';
+
+
 const AppRoutes = () => (
   <Routes>
     {/* Redirige la raíz al login */}
@@ -56,7 +59,14 @@ const AppRoutes = () => (
       <Route path="habitaciones" element={<AdminHabitaciones />} />
       <Route path="horarios" element={<AdminHorarios />} />
     </Route>
-
+    {/* Ruta para reservar una habitación (cliente) */}
+    <Route path="/cliente" element={<ClienteLayout />}>
+      <Route path="home" element={<ClienteHome />} />
+      <Route path="habitaciones" element={<ClienteHabitaciones />} />
+      <Route path="reservas" element={<ClienteReservas />} />
+      <Route path="facturas" element={<ClienteFacturas />} />
+      <Route path="reservar/:habitacionId" element={<ReservaDatosPersonales />} /> {/* <-- Añadido */}
+    </Route>
     {/* Ruta para página no encontrada */}
     <Route path="*" element={<NotFound />} />
   </Routes>
