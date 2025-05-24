@@ -17,14 +17,15 @@ const FooterMain = () => (
       gap: 4,
     }}
   >
-    <Box sx={{ flex: 1, display: "flex", justifyContent: { xs: "center", md: "flex-start" }, mb: { xs: 3, md: 0 } }}>
-      <FooterContacto />
+    <Box sx={{ flex: 1, display: "flex", justifyContent: { xs: "center", md: "flex-start" } }}>
+      <FooterLogo />
     </Box>
+    
     <Box sx={{ flex: 1, display: "flex", justifyContent: "center", mb: { xs: 3, md: 0 } }}>
       <FooterMapa />
     </Box>
-    <Box sx={{ flex: 1, display: "flex", justifyContent: { xs: "center", md: "flex-end" } }}>
-      <FooterLogo />
+    <Box sx={{ flex: 1, display: "flex", justifyContent: { xs: "center", md: "flex-end" }, mb: { xs: 3, md: 0 } }}>
+      <FooterContacto />
     </Box>
   </Box>
 );
