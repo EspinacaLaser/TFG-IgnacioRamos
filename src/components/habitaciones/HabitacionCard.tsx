@@ -58,7 +58,6 @@ const HabitacionCard: React.FC<HabitacionCardProps> = ({
         >
           Habitación {numero}
         </Typography>
-        {/* Estado coloreado */}
         {/* Estado coloreado solo en la palabra */}
         <Typography
           sx={{

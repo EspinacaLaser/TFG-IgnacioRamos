@@ -35,7 +35,7 @@ const Habitaciones: React.FC = () => {
           descripcion={h.descripcion}
           imagenes={h.imagenes || []}
           onDetalles={() => handleDetalles(h)}
-          onReservar={() => { /* TODO: implement reserve handler */ }}
+          onReservar={() => { }}
         />
       ))}
       {/* Modal de detalle */}
