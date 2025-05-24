@@ -1,3 +1,10 @@
+/**
+ * GaleriaImagenesHabitacion
+ * 
+ * Componente que muestra una galería horizontal de imágenes para una habitación.
+ * Recibe un array de rutas relativas a las imágenes y el número de la habitación.
+ * Las imágenes se muestran con bordes redondeados y scroll horizontal si exceden el ancho.
+ */
 import React from "react";
 import Box from "@mui/material/Box";
 
@@ -14,11 +21,7 @@ const GaleriaImagenesHabitacion: React.FC<GaleriaImagenesHabitacionProps> = ({ i
       {imagenes.map((img, idx) => (
         <img
           key={idx}
-          src={
-            img.startsWith("http")
-              ? img
-              : `http://localhost/hotel-api/img/habitaciones/${img.endsWith(".jpg") ? img : img + ".jpg"}`
-          }
+          src={`http://localhost${img}`}
           alt={`Habitación ${numero} imagen ${idx + 1}`}
           style={{ width: 180, height: 120, objectFit: "cover", borderRadius: 8 }}
         />
