@@ -1,42 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import ReservaCardCliente from "../../components/reservas/ReservaCardCliente";
+import { useAuth } from "../../context/AuthContext"; // Ajusta la ruta según la ubicación del archivo
 
 /**
  * Página "Mis Reservas" para el cliente.
- * Muestra una lista de cards con las reservas del usuario.
+ * Muestra una lista de cards con las reservas del usuario autenticado.
  */
 const MisReservas: React.FC = () => {
-  // Estado para las reservas del cliente
+  const { usuario } = useAuth(); // Debe devolver el usuario logueado con cliente_id
   const [reservas, setReservas] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Simulación de fetch de reservas (reemplazar por fetch real)
   useEffect(() => {
-    // Aquí deberías hacer fetch al backend con el cliente_id del usuario logueado
-    // Ejemplo de datos simulados:
-    setTimeout(() => {
-      setReservas([
-        {
-          id: 1,
-          nombre_cliente: "Juan Pérez",
-          fecha_entrada: "2025-06-01",
-          fecha_salida: "2025-06-05",
-          estado: "pagada",
-          total: 320.5,
-        },
-        {
-          id: 2,
-          nombre_cliente: "Juan Pérez",
-          fecha_entrada: "2025-07-10",
-          fecha_salida: "2025-07-15",
-          estado: "pagada",
-          total: 450,
-        },
-      ]);
+    if (!usuario?.cliente_id) {
       setLoading(false);
-    }, 800);
-  }, []);
+      return;
+    }
+    fetch(`http://localhost/hotel-api/reservas_cliente.php?cliente_id=${usuario.cliente_id}`)
+      .then(res => res.json())
+      .then(data => {
+        setReservas(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [usuario]);
 
   return (
     <Box sx={{ mt: 4, fontFamily: "'Montserrat', Arial, sans-serif" }}>

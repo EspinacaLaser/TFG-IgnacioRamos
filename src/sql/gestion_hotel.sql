@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2025 a las 13:40:49
+-- Tiempo de generación: 25-05-2025 a las 16:49:12
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -110,8 +110,8 @@ CREATE TABLE `habitaciones` (
 
 INSERT INTO `habitaciones` (`id`, `numero`, `estado`, `capacidad`, `descripcion`, `precio_base`) VALUES
 (4, '201', 'disponible', 2, 'Amplia habitación de matrimonio con una cama doble grande, decoración elegante y ventanales que ofrecen abundante luz natural. Incluye baño privado, escritorio, armario espacioso y todas las comodidades para una estancia confortable. Ideal para parejas que buscan tranquilidad y confort en un ambiente moderno y acogedor.', 120.00),
-(5, '202', 'disponible', 3, 'Habitación triple perfecta para familias o grupos pequeños, equipada con tres camas individuales, zona de estar y baño privado. Dispone de espacio suficiente para el equipaje, escritorio, televisión y vistas al jardín interior. El ambiente es luminoso y funcional, pensado para el descanso y la comodidad de todos los huéspedes.', 90.00),
-(6, '203', 'disponible', 1, 'Acogedora habitación individual diseñada para viajeros solitarios, con una cama cómoda, escritorio y baño privado. La decoración es moderna y funcional, con detalles que aportan calidez y tranquilidad. Perfecta para estancias cortas o viajes de negocios, ofrece privacidad y todo lo necesario para una estancia agradable.', 50.00),
+(5, '202', 'ocupada', 3, 'Habitación triple perfecta para familias o grupos pequeños, equipada con tres camas individuales, zona de estar y baño privado. Dispone de espacio suficiente para el equipaje, escritorio, televisión y vistas al jardín interior. El ambiente es luminoso y funcional, pensado para el descanso y la comodidad de todos los huéspedes.', 90.00),
+(6, '203', 'ocupada', 1, 'Acogedora habitación individual diseñada para viajeros solitarios, con una cama cómoda, escritorio y baño privado. La decoración es moderna y funcional, con detalles que aportan calidez y tranquilidad. Perfecta para estancias cortas o viajes de negocios, ofrece privacidad y todo lo necesario para una estancia agradable.', 50.00),
 (7, '204', 'mantenimiento', 2, 'Habitación actualmente en mantenimiento. Pronto estará disponible para su reserva con todas las comodidades y servicios habituales. Gracias por su comprensión.', 0.00);
 
 -- --------------------------------------------------------
@@ -175,6 +175,14 @@ CREATE TABLE `reservas` (
   `parking` tinyint(1) DEFAULT 0,
   `total` decimal(10,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `reservas`
+--
+
+INSERT INTO `reservas` (`id`, `cliente_id`, `habitacion_id`, `fecha_entrada`, `fecha_salida`, `estado`, `bufet`, `parking`, `total`) VALUES
+(6, 1, 5, '2025-05-25', '2025-05-27', 'pagada', 0, 0, 238.00),
+(7, 1, 6, '2025-05-25', '2025-05-31', 'pagada', 0, 0, 330.00);
 
 --
 -- Índices para tablas volcadas
@@ -287,7 +295,7 @@ ALTER TABLE `recepcionistas`
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

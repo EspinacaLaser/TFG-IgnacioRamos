@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, CardContent, Typography, Box, Button } from "@mui/material";
-import DownloadIcon from "@mui/icons-material/Download";
+import { Card, CardContent, Typography, Box } from "@mui/material";
+import BotonFactura from "./BotonFactura";
 
 /**
  * Props para la card de reserva del cliente.
@@ -9,6 +9,7 @@ export interface ReservaCardClienteProps {
   reserva: {
     id: number;
     nombre_cliente: string;
+    nombre_habitacion: string;
     fecha_entrada: string;
     fecha_salida: string;
     estado: string;
@@ -37,11 +38,11 @@ const ReservaCardCliente: React.FC<ReservaCardClienteProps> = ({ reserva }) => (
         fontWeight="bold"
         sx={{ mb: 2, fontFamily: "'Montserrat', Arial, sans-serif" }}
       >
-        Reserva #{reserva.id}
+        {reserva.nombre_habitacion}
       </Typography>
       <Box sx={{ mb: 1 }}>
         <Typography variant="subtitle2" color="text.secondary">
-          Nombre:
+          Cliente:
         </Typography>
         <Typography variant="body1" sx={{ fontFamily: "'Montserrat', Arial, sans-serif" }}>
           {reserva.nombre_cliente}
@@ -78,24 +79,10 @@ const ReservaCardCliente: React.FC<ReservaCardClienteProps> = ({ reserva }) => (
           Total:
         </Typography>
         <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-          {reserva.total.toFixed(2)} €
+          {Number(reserva.total).toFixed(2)} €
         </Typography>
       </Box>
-      <Button
-        variant="contained"
-        color="primary"
-        startIcon={<DownloadIcon />}
-        sx={{
-          fontFamily: "'Montserrat', Arial, sans-serif",
-          fontWeight: "bold",
-          letterSpacing: 1,
-          borderRadius: 2,
-          mt: 1,
-        }}
-        // onClick={handleDescargarFactura} // Se implementará más adelante
-      >
-        DESCARGAR FACTURA
-      </Button>
+      <BotonFactura />
     </CardContent>
   </Card>
 );
