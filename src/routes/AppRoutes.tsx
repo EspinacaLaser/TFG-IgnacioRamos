@@ -4,7 +4,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import ClienteLayout from '../layouts/ClienteLayout';
-import RecepcionistaLayout from '../layouts/RecepcionLayout';
 import AdminLayout from '../layouts/AdminLayout';
 
 import ClienteHome from '../pages/cliente/ClienteHome';
@@ -26,6 +25,7 @@ import Registro from '../pages/shared/Registro';
 import NotFound from '../pages/shared/NotFound';
 
 import ReservaDatosPersonales from '../pages/cliente/ReservaDatosPersonales';
+import RecepcionLayout from '../layouts/RecepcionLayout';
 
 
 const AppRoutes = () => (
@@ -48,12 +48,10 @@ const AppRoutes = () => (
     </Route>
 
     {/* Rutas privadas para recepcionistas */}
-    // Ejemplo de rutas protegidas para recepcionista
-    <Route path="/recepcionista" element={<RecepcionistaLayout />}>
+    <Route path="/recepcionista" element={<RecepcionLayout />}>
       <Route path="home" element={<RecepcionistaHome />} />
       <Route path="reservas" element={<RecepcionistaReservas />} />
       <Route path="horarios" element={<RecepcionistaHorario />} />
-      {/* ...otras rutas de recepcionista */}
     </Route>
 
     {/* Rutas privadas para administradores */}

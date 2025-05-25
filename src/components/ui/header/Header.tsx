@@ -1,7 +1,6 @@
 /**
  * Header principal de la aplicación.
- * Incluye el logo (generado con IA), la barra de navegación, el botón de 
- * cerrar sesión y el menú hamburguesa para móvil.
+ * Incluye el logo, barra de navegación, nombre de usuario, botón de cerrar sesión y menú hamburguesa.
  * Utiliza el tema global de MUI para colores y tipografía.
  */
 import { useState } from "react";
@@ -19,6 +18,7 @@ import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import NavItem from "./NavItem";
+import WelcomeUser from "./WelcomeUser";
 
 // Enlaces de navegación principales
 const navLinks = [
@@ -29,14 +29,10 @@ const navLinks = [
 ];
 
 const Header = () => {
-  // Hook de navegación de React Router
   const navigate = useNavigate();
-  // Recupera el usuario del localStorage (si está logeado)
   const user = JSON.parse(localStorage.getItem("user") || "null");
-  // Estado para controlar la apertura del Drawer (menú tipo hamburguesa)
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  // Cierra sesión y redirige al login
   const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/login");
@@ -60,8 +56,9 @@ const Header = () => {
         <Box sx={{ flex: 1, display: { xs: "none", md: "flex" }, justifyContent: "center" }}>
           <Navbar />
         </Box>
-        {/* Botón de cerrar sesión visible solo en escritorio */}
-        <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}>
+        {/* Nombre de usuario y botón de cerrar sesión en escritorio */}
+        <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center", gap: 2 }}>
+          <WelcomeUser />
           {user ? (
             <Button
               variant="contained"
@@ -104,12 +101,13 @@ const Header = () => {
               ))}
             </List>
             <Divider sx={{ my: 1 }} />
+            <WelcomeUser />
             {user ? (
               <Button
                 variant="contained"
                 color="primary"
                 onClick={handleLogout}
-                sx={{ fontWeight: "bold", fontFamily: "'Montserrat', Arial, sans-serif" }}
+                sx={{ fontWeight: "bold", fontFamily: "'Montserrat', Arial, sans-serif", mt: 2 }}
               >
                 Cerrar sesión
               </Button>
