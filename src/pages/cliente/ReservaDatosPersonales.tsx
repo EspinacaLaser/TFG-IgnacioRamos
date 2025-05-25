@@ -10,13 +10,6 @@ import Box from "@mui/material/Box";
 const PRECIO_BUFET = 8;
 const PRECIO_PARKING = 12;
 
-/**
- * Página principal de la reserva:
- * - Obtiene los datos de la habitación seleccionada.
- * - Gestiona el estado de fechas, datos personales y extras.
- * - Calcula noches y total.
- * - Muestra el layout con resumen a la izquierda y formulario a la derecha.
- */
 const ReservaDatosPersonales: React.FC = () => {
   const { habitacionId } = useParams();
   const [habitacion, setHabitacion] = useState<any>(null);
@@ -101,6 +94,7 @@ const ReservaDatosPersonales: React.FC = () => {
             onDatosChange={setDatos}
             noches={noches}
             total={total}
+            habitacion_id={habitacion.id} // <-- PASA EL ID AQUÍ
           />
           <ReservaCondicionalesInfo />
         </Box>

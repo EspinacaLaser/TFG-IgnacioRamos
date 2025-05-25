@@ -15,18 +15,29 @@ interface BotonPasarelaPagoProps {
   noches: number;
   total: number;
   disabled: boolean;
+  habitacion_id: number; // <-- Añade esto
 }
 
-/**
- * Botón que redirige a la página de pago, pasando los datos de la reserva.
- * Usa React Router para navegar y pasar el estado.
- */
-const BotonPasarelaPago: React.FC<BotonPasarelaPagoProps> = ({ datos, fechas, noches, total, disabled }) => {
+const BotonPasarelaPago: React.FC<BotonPasarelaPagoProps> = ({
+  datos,
+  fechas,
+  noches,
+  total,
+  disabled,
+  habitacion_id, // <-- Añade esto
+}) => {
   const navigate = useNavigate();
 
-  // Al hacer click, navega a la página de pago y pasa los datos por state
   const handleClick = () => {
-    navigate("/cliente/pago", { state: { datos, fechas, noches, total } });
+    navigate("/cliente/pago", {
+      state: {
+        datos,
+        fechas,
+        noches,
+        total,
+        habitacion_id, // <-- Añade esto
+      },
+    });
   };
 
   return (
