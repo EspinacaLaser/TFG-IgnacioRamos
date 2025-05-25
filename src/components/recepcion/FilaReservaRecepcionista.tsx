@@ -8,7 +8,7 @@ export interface ReservaRecepcionista {
   id: number;
   nombre_cliente: string;
   email_cliente: string;
-  telefono_cliente: string; // <-- Añadido para que TypeScript lo reconozca
+  telefono_cliente: string;
   cliente_id: number;
   nombre_habitacion: string;
   numero_habitacion: string;
@@ -23,15 +23,19 @@ export interface ReservaRecepcionista {
 }
 
 /**
- * Fila de la tabla de reservas.
- * Añade un botón para ver el detalle.
+ * Props para la fila de la tabla de reservas.
  */
 interface Props {
   reserva: ReservaRecepcionista;
   onVerDetalle: (reserva: ReservaRecepcionista) => void;
+  onBorrar: (reserva: ReservaRecepcionista) => void;
 }
 
-const FilaReservaRecepcionista: React.FC<Props> = ({ reserva, onVerDetalle }) => {
+/**
+ * Fila de la tabla de reservas.
+ * Añade botones para ver el detalle (centrado) y borrar.
+ */
+const FilaReservaRecepcionista: React.FC<Props> = ({ reserva, onVerDetalle, onBorrar }) => {
   const theme = useTheme();
   return (
     <tr
@@ -57,10 +61,31 @@ const FilaReservaRecepcionista: React.FC<Props> = ({ reserva, onVerDetalle }) =>
             padding: "4px 10px",
             cursor: "pointer",
             fontWeight: 600,
+            display: "inline-block",
+            minWidth: 90,
           }}
           title="Ver detalle"
         >
           Detalle
+        </button>
+      </td>
+      <td style={{ padding: "10px 8px", textAlign: "center" }}>
+        <button
+          onClick={() => onBorrar(reserva)}
+          style={{
+            background: theme.palette.error.main,
+            color: theme.palette.error.contrastText,
+            border: "none",
+            borderRadius: 4,
+            padding: "4px 10px",
+            cursor: "pointer",
+            fontWeight: 600,
+            display: "inline-block",
+            minWidth: 90,
+          }}
+          title="Borrar reserva"
+        >
+          Borrar
         </button>
       </td>
     </tr>
