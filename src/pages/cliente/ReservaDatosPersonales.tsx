@@ -10,6 +10,13 @@ import Box from "@mui/material/Box";
 const PRECIO_BUFET = 8;
 const PRECIO_PARKING = 12;
 
+/**
+ * Página principal de la reserva:
+ * - Obtiene los datos de la habitación seleccionada.
+ * - Gestiona el estado de fechas, datos personales y extras.
+ * - Calcula noches y total.
+ * - Muestra el layout con resumen a la izquierda y formulario a la derecha.
+ */
 const ReservaDatosPersonales: React.FC = () => {
   const { habitacionId } = useParams();
   const [habitacion, setHabitacion] = useState<any>(null);
@@ -38,11 +45,12 @@ const ReservaDatosPersonales: React.FC = () => {
     (extras.parking ? PRECIO_PARKING : 0) * (noches || 0);
   const total = +(base + iva + extrasTotal).toFixed(2);
 
-  // Scroll al top al montar el componente
+  // Al montar, hace scroll al top
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  // Carga los datos de la habitación seleccionada
   useEffect(() => {
     if (!habitacionId) {
       console.warn("No se recibió habitacionId en la URL");

@@ -1,5 +1,7 @@
 /**
  * Muestra la imagen destacada de la habitación seleccionada.
+ * Props:
+ * - imagen: URL de la imagen a mostrar.
  */
 import Box from "@mui/material/Box";
 
@@ -7,6 +9,9 @@ interface ReservaImagenHabitacionProps {
   imagen: string;
 }
 
+/**
+ * Componente que muestra la imagen principal de la habitación.
+ */
 const ReservaImagenHabitacion: React.FC<ReservaImagenHabitacionProps> = ({ imagen }) => (
   <Box sx={{ width: 260, height: 160, mb: 2 }}>
     <img

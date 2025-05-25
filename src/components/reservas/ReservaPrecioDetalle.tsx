@@ -1,6 +1,12 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
+/**
+ * Props del detalle de precio de la reserva.
+ * - precioBase: precio base por noche.
+ * - noches: número de noches.
+ * - extras: extras seleccionados.
+ */
 interface ReservaPrecioDetalleProps {
   precioBase: number | string;
   noches: number;
@@ -10,6 +16,13 @@ interface ReservaPrecioDetalleProps {
 const PRECIO_BUFET = 8;
 const PRECIO_PARKING = 12;
 
+/**
+ * Componente que muestra el desglose del precio de la reserva:
+ * - Precio base por noches
+ * - IVA
+ * - Extras seleccionados
+ * - Total
+ */
 const ReservaPrecioDetalle: React.FC<ReservaPrecioDetalleProps> = ({ precioBase, noches, extras }) => {
   // Calcula el precio base total por noches
   const base = (Number(precioBase) || 0) * (noches || 0);

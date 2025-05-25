@@ -4,6 +4,14 @@ import TextField from "@mui/material/TextField";
 import PrefijoTelefonoSelect from "./PrefijoTelefonoSelect";
 import BotonPasarelaPago from "./BotonPasarelaPago";
 
+/**
+ * Props del formulario de datos personales.
+ * - datos: datos personales del cliente.
+ * - onDatosChange: función para actualizar los datos personales.
+ * - fechas: fechas de la reserva.
+ * - noches: número de noches.
+ * - total: precio total.
+ */
 interface ReservaDatosPersonalesFormProps {
   datos: { nombre: string; email: string; telefono: string; prefijo: string };
   onDatosChange: (datos: { nombre: string; email: string; telefono: string; prefijo: string }) => void;
@@ -12,8 +20,15 @@ interface ReservaDatosPersonalesFormProps {
   total: number;
 }
 
+// Expresión regular para validar email
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/**
+ * Formulario de datos personales del cliente.
+ * - Valida email y teléfono.
+ * - El botón de pagar solo se habilita si todo es válido.
+ * - Incluye selector de prefijo telefónico.
+ */
 const ReservaDatosPersonalesForm: React.FC<ReservaDatosPersonalesFormProps> = ({
   datos,
   onDatosChange,
@@ -21,11 +36,14 @@ const ReservaDatosPersonalesForm: React.FC<ReservaDatosPersonalesFormProps> = ({
   noches,
   total,
 }) => {
+  // Estado para controlar si los campos han sido tocados (para mostrar errores solo después de interactuar)
   const [touched, setTouched] = useState<{ [k: string]: boolean }>({});
 
+  // Validaciones de email y teléfono
   const emailError = datos.email && !emailRegex.test(datos.email);
   const telefonoError = datos.telefono && !/^\d+$/.test(datos.telefono);
 
+  // El botón de pagar solo se habilita si todos los campos son válidos y están completos
   const isDisabled =
     !datos.nombre ||
     !datos.email ||
@@ -34,6 +52,7 @@ const ReservaDatosPersonalesForm: React.FC<ReservaDatosPersonalesFormProps> = ({
     emailError ||
     telefonoError;
 
+  // Marca un campo como tocado al perder el foco
   const handleBlur = (field: string) => setTouched({ ...touched, [field]: true });
 
   return (
@@ -78,8 +97,9 @@ const ReservaDatosPersonalesForm: React.FC<ReservaDatosPersonalesFormProps> = ({
         datos={datos}
         fechas={fechas}
         noches={noches}
-        total={total} 
-        disabled={!!isDisabled}      />
+        total={total}
+        disabled={!!isDisabled}
+      />
     </Box>
   );
 };

@@ -2,6 +2,15 @@ import Box from "@mui/material/Box";
 import ReservaFechasSelector from "./ReservaFechasSelector";
 import ReservaDatosPersonalesForm from "./ReservaDatosPersonalesForm";
 
+/**
+ * Props del formulario de datos de reserva.
+ * - fechas: objeto con fecha de entrada y salida.
+ * - onFechasChange: función para actualizar las fechas.
+ * - datos: datos personales del cliente.
+ * - onDatosChange: función para actualizar los datos personales.
+ * - noches: número de noches calculado.
+ * - total: precio total calculado.
+ */
 interface ReservaFormularioDatosProps {
   fechas: { entrada: string; salida: string };
   onFechasChange: (fechas: { entrada: string; salida: string }) => void;
@@ -11,6 +20,10 @@ interface ReservaFormularioDatosProps {
   total: number;
 }
 
+/**
+ * Componente que agrupa el selector de fechas y el formulario de datos personales.
+ * Pasa los datos y funciones de cambio a los subcomponentes.
+ */
 const ReservaFormularioDatos: React.FC<ReservaFormularioDatosProps> = ({
   fechas,
   onFechasChange,

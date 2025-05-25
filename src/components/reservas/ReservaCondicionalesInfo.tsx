@@ -1,6 +1,9 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
+/**
+ * Muestra las condiciones de la reserva (pago, cancelación, privacidad).
+ */
 const ReservaCondicionalesInfo: React.FC = () => (
   <Box sx={{ mt: 4 }}>
     <Typography variant="body2" color="text.secondary">

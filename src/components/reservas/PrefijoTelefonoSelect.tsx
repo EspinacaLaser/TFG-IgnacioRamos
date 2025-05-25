@@ -2,11 +2,21 @@ import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 
+/**
+ * Props del selector de prefijo telefónico.
+ * - value: prefijo seleccionado.
+ * - onChange: función para actualizar el prefijo.
+ */
 interface PrefijoTelefonoSelectProps {
   value: string;
   onChange: (value: string) => void;
 }
 
+/**
+ * Selector de prefijo telefónico por país.
+ * - Carga los prefijos desde un endpoint.
+ * - Si no hay valor seleccionado, selecciona el primero automáticamente.
+ */
 const PrefijoTelefonoSelect: React.FC<PrefijoTelefonoSelectProps> = ({ value, onChange }) => {
   const [prefijos, setPrefijos] = useState<{ codigo: string; pais: string }[]>([]);
 

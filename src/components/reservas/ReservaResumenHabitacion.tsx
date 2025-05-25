@@ -17,6 +17,9 @@ interface ReservaResumenHabitacionProps {
   onExtrasChange: (extras: { bufet: boolean; parking: boolean }) => void;
 }
 
+/**
+ * Componente que agrupa la imagen, el precio y los extras de la habitación.
+ */
 const ReservaResumenHabitacion: React.FC<ReservaResumenHabitacionProps> = ({
   imagen,
   precioBase,

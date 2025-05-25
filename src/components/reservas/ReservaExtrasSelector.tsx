@@ -11,7 +11,13 @@ interface ReservaExtrasSelectorProps {
   onExtrasChange: (extras: { bufet: boolean; parking: boolean }) => void;
 }
 
+/**
+ * Componente para seleccionar los extras de la reserva.
+ * - Permite activar/desactivar bufet y parking.
+ * - Llama a onExtrasChange con el nuevo estado.
+ */
 const ReservaExtrasSelector: React.FC<ReservaExtrasSelectorProps> = ({ extras, onExtrasChange }) => {
+  // Maneja el cambio de los checkboxes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onExtrasChange({
       ...extras,
