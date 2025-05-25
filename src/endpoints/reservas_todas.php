@@ -1,10 +1,9 @@
 <?php
 // Endpoint: Devuelve todas las reservas del sistema para uso del recepcionista.
-// Incluye datos del cliente, habitación, fechas, estado, bufet, parking y total.
 
-header("Access-Control-Allow-Origin: *"); // Permite peticiones desde cualquier origen (CORS)
-header("Content-Type: application/json"); // Responde en formato JSON
-include 'conexion.php'; // Conexión a la base de datos
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json");
+include 'conexion.php';
 
 // Consulta SQL para obtener todas las reservas con información relevante
 $sql = "
@@ -12,7 +11,11 @@ $sql = "
         r.id,
         c.nombre AS nombre_cliente,
         c.email AS email_cliente,
+        c.telefono AS telefono_cliente,   -- <--- Añadido aquí
+        c.id AS cliente_id,
         CONCAT('Habitación ', h.numero) AS nombre_habitacion,
+        h.numero AS numero_habitacion,
+        h.capacidad,
         r.fecha_entrada,
         r.fecha_salida,
         r.estado,
@@ -26,19 +29,17 @@ $sql = "
 ";
 $res = $conn->query($sql);
 
-// Control de error en la consulta
 if (!$res) {
     http_response_code(500);
     echo json_encode(["error" => "Error en la consulta"]);
     exit;
 }
 
-// Construye el array de reservas
 $reservas = [];
 while ($row = $res->fetch_assoc()) {
     $reservas[] = $row;
 }
 
-// Devuelve el array como JSON
 echo json_encode($reservas);
 $conn->close();
+?>

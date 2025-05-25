@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2025 a las 16:49:12
+-- Tiempo de generación: 25-05-2025 a las 23:21:47
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -39,7 +39,7 @@ CREATE TABLE `administradores` (
 --
 
 INSERT INTO `administradores` (`id`, `usuario`, `password`, `nombre_completo`) VALUES
-(1, 'admin1', '$2y$10$ffvsTenkM47HKkH.ThXnN.LOT9skPf2HE3Rjtsfygd6mohcoPhBEy', 'IgnacioAdmin');
+(2, 'admin2', '$2y$10$ixRGWLL3t9XtEdo5LSTwHejgUV2WCrvLHdHn1ZodM/Eae8nUNMlu2', 'Ignacio Ramos');
 
 -- --------------------------------------------------------
 
@@ -51,6 +51,7 @@ CREATE TABLE `clientes` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `fecha_registro` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -59,9 +60,8 @@ CREATE TABLE `clientes` (
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`id`, `nombre`, `email`, `password`, `fecha_registro`) VALUES
-(1, 'Cliente Prueba', 'cliente@ejemplo.com', '$2y$10$O/Pi6WRCkE32uH0AwtP6/e9fP4pYOeiwNJeo9Hivo8pvTXcMQmGQW', '2025-05-21 23:51:38'),
-(8, 'gloosito', 'correo2@gmail.com', '$2y$10$PGC9WiFFdhTSF7OV5nZbXOmW4R1qiz/fLKwCRBYI0Ez.U.2FhcOY6', '2025-05-25 10:36:37');
+INSERT INTO `clientes` (`id`, `nombre`, `email`, `telefono`, `password`, `fecha_registro`) VALUES
+(1, 'Cliente Prueba', 'cliente@ejemplo.com', '600840728', '$2y$10$O/Pi6WRCkE32uH0AwtP6/e9fP4pYOeiwNJeo9Hivo8pvTXcMQmGQW', '2025-05-21 23:51:38');
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,7 @@ CREATE TABLE `habitaciones` (
 INSERT INTO `habitaciones` (`id`, `numero`, `estado`, `capacidad`, `descripcion`, `precio_base`) VALUES
 (4, '201', 'disponible', 2, 'Amplia habitación de matrimonio con una cama doble grande, decoración elegante y ventanales que ofrecen abundante luz natural. Incluye baño privado, escritorio, armario espacioso y todas las comodidades para una estancia confortable. Ideal para parejas que buscan tranquilidad y confort en un ambiente moderno y acogedor.', 120.00),
 (5, '202', 'ocupada', 3, 'Habitación triple perfecta para familias o grupos pequeños, equipada con tres camas individuales, zona de estar y baño privado. Dispone de espacio suficiente para el equipaje, escritorio, televisión y vistas al jardín interior. El ambiente es luminoso y funcional, pensado para el descanso y la comodidad de todos los huéspedes.', 90.00),
-(6, '203', 'ocupada', 1, 'Acogedora habitación individual diseñada para viajeros solitarios, con una cama cómoda, escritorio y baño privado. La decoración es moderna y funcional, con detalles que aportan calidez y tranquilidad. Perfecta para estancias cortas o viajes de negocios, ofrece privacidad y todo lo necesario para una estancia agradable.', 50.00),
+(6, '203', 'disponible', 1, 'Acogedora habitación individual diseñada para viajeros solitarios, con una cama cómoda, escritorio y baño privado. La decoración es moderna y funcional, con detalles que aportan calidez y tranquilidad. Perfecta para estancias cortas o viajes de negocios, ofrece privacidad y todo lo necesario para una estancia agradable.', 50.00),
 (7, '204', 'mantenimiento', 2, 'Habitación actualmente en mantenimiento. Pronto estará disponible para su reserva con todas las comodidades y servicios habituales. Gracias por su comprensión.', 0.00);
 
 -- --------------------------------------------------------
@@ -158,6 +158,14 @@ CREATE TABLE `recepcionistas` (
   `activo` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `recepcionistas`
+--
+
+INSERT INTO `recepcionistas` (`id`, `usuario`, `password`, `nombre_completo`, `activo`) VALUES
+(1, 'recepciondiurno', '$2y$10$VTPv9.n5Vs0GyGFErIdWuOjyCht//TwWCVRU2gsdEOVuHHQxPFMO.', 'Carlos García', 1),
+(2, 'recepcionnocturno', '$2y$10$rzFamZDehf8ikKslwqhyaOdYquQpuLPB8k.9VtmNl0uH/fhwR8Lqi', 'Laura Fernández', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -181,8 +189,7 @@ CREATE TABLE `reservas` (
 --
 
 INSERT INTO `reservas` (`id`, `cliente_id`, `habitacion_id`, `fecha_entrada`, `fecha_salida`, `estado`, `bufet`, `parking`, `total`) VALUES
-(6, 1, 5, '2025-05-25', '2025-05-27', 'pagada', 0, 0, 238.00),
-(7, 1, 6, '2025-05-25', '2025-05-31', 'pagada', 0, 0, 330.00);
+(6, 1, 5, '2025-05-25', '2025-05-27', 'pagada', 0, 0, 238.00);
 
 --
 -- Índices para tablas volcadas
@@ -253,13 +260,13 @@ ALTER TABLE `reservas`
 -- AUTO_INCREMENT de la tabla `administradores`
 --
 ALTER TABLE `administradores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `facturas`
@@ -289,13 +296,13 @@ ALTER TABLE `imagenes_habitacion`
 -- AUTO_INCREMENT de la tabla `recepcionistas`
 --
 ALTER TABLE `recepcionistas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas

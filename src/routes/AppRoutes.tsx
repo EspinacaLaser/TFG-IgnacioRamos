@@ -13,8 +13,6 @@ import ClienteHabitaciones from '../pages/cliente/Habitaciones';
 import PasarelaPago from '../pages/cliente/PasarelaPago';
 
 import RecepcionistaHome from '../pages/recepcion/RecepcionistaHome';
-import RecepcionistaReservas from '../pages/recepcion/RecepcionistaReservas';
-import RecepcionistaHorario from '../pages/recepcion/RecepcionistaHorario';
 
 import AdminHome from '../pages/admin/AdminHome';
 import AdminHabitaciones from '../pages/admin/AdminHabitaciones';
@@ -50,8 +48,6 @@ const AppRoutes = () => (
     {/* Rutas privadas para recepcionistas */}
     <Route path="/recepcionista" element={<RecepcionLayout />}>
       <Route path="home" element={<RecepcionistaHome />} />
-      <Route path="reservas" element={<RecepcionistaReservas />} />
-      <Route path="horarios" element={<RecepcionistaHorario />} />
     </Route>
 
     {/* Rutas privadas para administradores */}
