@@ -8,7 +8,7 @@ import RecepcionistaLayout from '../layouts/RecepcionLayout';
 import AdminLayout from '../layouts/AdminLayout';
 
 import ClienteHome from '../pages/cliente/ClienteHome';
-import ClienteReservas from '../pages/cliente/ClienteReservas';
+import ClienteReservas from '../pages/cliente/MisReservas';
 import ClienteFacturas from '../pages/cliente/ClienteFacturas';
 import ClienteHabitaciones from '../pages/cliente/Habitaciones';
 import PasarelaPago from '../pages/cliente/PasarelaPago';
@@ -65,7 +65,6 @@ const AppRoutes = () => (
       <Route path="home" element={<ClienteHome />} />
       <Route path="habitaciones" element={<ClienteHabitaciones />} />
       <Route path="reservas" element={<ClienteReservas />} />
-      <Route path="facturas" element={<ClienteFacturas />} />
       <Route path="reservar/:habitacionId" element={<ReservaDatosPersonales />} />
       <Route path="pago" element={<PasarelaPago />} />
     </Route>
