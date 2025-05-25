@@ -39,14 +39,14 @@ const PasarelaPago: React.FC = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          cliente_id,
-          habitacion_id,
-          fecha_entrada: fechas.entrada,
-          fecha_salida: fechas.salida,
-          total,
-          bufet: extras?.bufet ? 1 : 0,
-          parking: extras?.parking ? 1 : 0,
-        }),
+  cliente_id,
+  habitacion_id,
+  fecha_entrada: fechas.entrada,
+  fecha_salida: fechas.salida,
+  total,
+  bufet: extras?.bufet ? 1 : 0,
+  parking: extras?.parking ? 1 : 0,
+}),
       });
       const data = await response.json();
       if (data.success) {

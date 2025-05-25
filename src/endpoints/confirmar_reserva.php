@@ -1,4 +1,5 @@
 <?php
+
 // Endpoint para confirmar una reserva tras el pago ficticio.
 // Recibe los datos de la reserva por POST (JSON) y la guarda en la base de datos.
 // Devuelve success:true y el id de la reserva creada, o error en caso de fallo.
@@ -18,7 +19,7 @@ include 'conexion.php';
 
 // Recoge los datos enviados por POST (JSON)
 $data = json_decode(file_get_contents('php://input'), true);
-
+file_put_contents('debug_confirmar.txt', print_r($data, true));
 // Validación básica de campos obligatorios
 if (
     !isset($data['cliente_id']) ||
