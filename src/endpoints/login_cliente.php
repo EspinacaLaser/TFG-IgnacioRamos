@@ -52,7 +52,7 @@ if ($row = $result->fetch_assoc()) {
         echo json_encode([
             'success' => true,
             'user' => [
-                'id' => $row['id'],
+                'cliente_id' => $row['id'], // CAMBIO: ahora es cliente_id
                 'nombre' => $row['nombre'],
                 'email' => $row['email'],
                 'rol' => 'cliente'

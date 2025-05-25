@@ -6,7 +6,7 @@ import ConfirmaCompra from "../../components/pago/ConfirmaCompra";
 import AlertaPagoExitoso from "../../components/pago/AlertaPagoExitoso";
 import AvisoSimulacionPago from "../../components/pago/AvisoSimulacionPago";
 import LoaderPago from "../../components/pago/LoaderPago";
-// import { AuthContext } from "../../context/AuthContext"; // Descomenta si usas contexto de usuario
+import { useAuth } from "../../context/AuthContext"; // Importa el contexto
 
 /**
  * Página de pasarela de pago.
@@ -15,7 +15,7 @@ import LoaderPago from "../../components/pago/LoaderPago";
  */
 const PasarelaPago: React.FC = () => {
   const location = useLocation();
-  // const { user } = useContext(AuthContext); // Descomenta si usas contexto de usuario
+  const { usuario } = useAuth(); // Obtiene el usuario logueado
   const [loading, setLoading] = useState(false);
   const [exito, setExito] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -23,11 +23,15 @@ const PasarelaPago: React.FC = () => {
   // Recoge los datos de la reserva desde el estado de navegación
   const { datos, fechas, noches, total, habitacion_id, extras } = location.state || {};
 
-  // Simula obtener el cliente_id del usuario logueado
-  const cliente_id = 1; // Sustituye por user.id si tienes contexto de usuario
+  // Usa el cliente_id real del usuario logueado
+  const cliente_id = usuario?.cliente_id;
 
   // Llama al endpoint para confirmar la reserva
   const handleConfirmar = async () => {
+    if (!cliente_id) {
+      setError("No se ha encontrado el usuario. Por favor, inicia sesión de nuevo.");
+      return;
+    }
     setLoading(true);
     setError(null);
     try {

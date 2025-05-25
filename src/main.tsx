@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { AuthProvider } from "./context/AuthContext";
 
 // -----------------------------------------------------------------------------
 // CONFIGURACIÓN DEL TEMA DE MUI (Material UI) PARA TIPOGRAFÍAS Y COLORES GLOBALES
@@ -104,11 +105,14 @@ const theme = createTheme({
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    {/* ThemeProvider aplica el tema global a toda la app */}
+    <AuthProvider>
+      {/* ThemeProvider aplica el tema global a toda la app */}
     <ThemeProvider theme={theme}>
       {/* CssBaseline normaliza los estilos base del navegador */}
       <CssBaseline />
       <App />
     </ThemeProvider>
+    </AuthProvider>
+    
   </React.StrictMode>
 );

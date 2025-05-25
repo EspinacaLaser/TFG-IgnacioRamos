@@ -3,8 +3,17 @@
 // Recibe los datos de la reserva por POST (JSON) y la guarda en la base de datos.
 // Devuelve success:true y el id de la reserva creada, o error en caso de fallo.
 
+// Cabeceras CORS y manejo de preflight
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
 include 'conexion.php';
 
 // Recoge los datos enviados por POST (JSON)

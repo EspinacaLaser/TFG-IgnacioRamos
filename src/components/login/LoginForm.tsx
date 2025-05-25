@@ -1,14 +1,10 @@
-/**
- * Formulario de login reutilizable para clientes y personal autorizado.
- * Gestiona el envío de datos y muestra errores si los hay.
- * Usa la fuente secundaria (Open Sans) para los campos y Montserrat para los botones.
- */
 import React, { useState } from "react";
 import InputField from "./InputField";
 import ErrorMessage from "./ErrorMessage";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import { useAuth } from "../../context/AuthContext"; // Importa el contexto
 
 interface LoginFormProps {
   tipo: "cliente" | "personal";
@@ -21,6 +17,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuth(); // Usa el contexto
 
   /**
    * Envía los datos del formulario al endpoint correspondiente según el rol.
@@ -51,7 +48,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ tipo, subrol }) => {
       });
       const data = await res.json();
       if (data.success) {
-        localStorage.setItem("user", JSON.stringify(data.user));
+        login(data.user); // Guarda el usuario en el contexto
         if (tipo === "cliente") navigate("/cliente/home");
         else if (subrol === "recepcionista") navigate("/recepcionista/home");
         else navigate("/admin/home");
