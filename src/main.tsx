@@ -9,51 +9,49 @@ import { AuthProvider } from "./context/AuthContext";
 // CONFIGURACIÓN DEL TEMA DE MUI (Material UI) PARA TIPOGRAFÍAS Y COLORES GLOBALES
 // -----------------------------------------------------------------------------
 
-// Creamos el tema global de la aplicación
 const theme = createTheme({
-  // Paleta de colores personalizada
   palette: {
     primary: {
-      main: "#3a2c1a",         // Marrón oscuro: color principal (header, footer, etc.)
-      contrastText: "#fff",    // Texto blanco sobre primary
+      main: "#3a2c1a",
+      contrastText: "#fff",
     },
     secondary: {
-      main: "#d6c3a1",         // Beige/dorado suave: color secundario (acentos, botones, etc.)
-      contrastText: "#3a2c1a", // Texto marrón oscuro sobre secondary
+      main: "#d6c3a1",
+      contrastText: "#3a2c1a",
     },
     background: {
-      default: "#f9f6f2",      // Color de fondo general de la web
-      paper: "#fff",           // Fondo de tarjetas, modales, etc.
+      default: "#f9f6f2",
+      paper: "#fff",
     },
     text: {
-      primary: "#222",         // Color principal del texto
-      secondary: "#3a2c1a",    // Color secundario del texto
+      primary: "#222",
+      secondary: "#3a2c1a",
     },
-    // Otros colores para estados (éxito, error, advertencia, info)
     success: {
-      main: "#388e3c", // Verde para disponible
+      main: "#388e3c",
       contrastText: "#fff",
     },
     warning: {
-      main: "#fbc02d", // Amarillo para mantenimiento
+      main: "#fbc02d",
       contrastText: "#fff",
     },
     error: {
-      main: "#b71c1c", // Rojo para ocupada
+      main: "#b71c1c",
       contrastText: "#fff",
     },
     info: {
       main: "#f5f5f5",
       contrastText: "#3a2c1a",
     },
+    // Colores personalizados para detalles de UI
+    divider: "#e0e0e0", // Para separadores de tabla
+    action: {
+      hover: "#f5f5f5", // Hover en filas de tabla
+      selected: "#ede7e3", // Selección en tablas o listas
+    },
   },
-
-  // Tipografías globales y por variante
   typography: {
-    // Fuente primaria global (afecta a la mayoría de componentes)
     fontFamily: "'Montserrat', Arial, sans-serif",
-
-    // Títulos (h1 a h6) usan Montserrat en negrita y diferentes tamaños
     h1: {
       fontFamily: "'Montserrat', Arial, sans-serif",
       fontWeight: 700,
@@ -84,15 +82,13 @@ const theme = createTheme({
       fontWeight: 700,
       fontSize: "1rem",
     },
-
-    // Texto normal (body1 y body2) usa Open Sans
     body1: {
-      fontFamily: "'Open Sans', Arial, sans-serif", // Fuente secundaria para texto principal
+      fontFamily: "'Open Sans', Arial, sans-serif",
       fontWeight: 400,
       fontSize: "1rem",
     },
     body2: {
-      fontFamily: "'Open Sans', Arial, sans-serif", // Fuente secundaria para texto secundario
+      fontFamily: "'Open Sans', Arial, sans-serif",
       fontWeight: 400,
       fontSize: "0.95rem",
     },
@@ -106,13 +102,10 @@ const theme = createTheme({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AuthProvider>
-      {/* ThemeProvider aplica el tema global a toda la app */}
-    <ThemeProvider theme={theme}>
-      {/* CssBaseline normaliza los estilos base del navegador */}
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
     </AuthProvider>
-    
   </React.StrictMode>
 );
