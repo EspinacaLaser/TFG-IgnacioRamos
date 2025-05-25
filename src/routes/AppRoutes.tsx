@@ -67,7 +67,7 @@ const AppRoutes = () => (
       <Route path="reservas" element={<ClienteReservas />} />
       <Route path="facturas" element={<ClienteFacturas />} />
       <Route path="reservar/:habitacionId" element={<ReservaDatosPersonales />} />
-      <Route path="pago" element={<PasarelaPago />} /> 
+      <Route path="pago" element={<PasarelaPago />} />
     </Route>
     {/* Ruta para página no encontrada */}
     <Route path="*" element={<NotFound />} />
