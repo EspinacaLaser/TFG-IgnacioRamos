@@ -15,10 +15,22 @@ $prefijo = $conn->real_escape_string($data['prefijo']);
 $bufet = isset($data['bufet']) ? 1 : 0;
 $parking = isset($data['parking']) ? 1 : 0;
 $total = floatval($data['total']);
-
-$sql = "INSERT INTO reservas (habitacion_id, fecha_entrada, fecha_salida, nombre, email, telefono, prefijo, bufet, parking, total)
-        VALUES ($habitacion_id, '$fecha_entrada', '$fecha_salida', '$nombre', '$email', '$telefono', '$prefijo', $bufet, $parking, $total)";
-
+// Validación básica de campos obligatorios
+if (
+    empty($habitacion_id) ||
+    empty($fecha_entrada) ||
+    empty($fecha_salida) ||
+    empty($nombre) ||
+    empty($email) ||
+    empty($telefono)
+) {
+    http_response_code(400);
+    echo json_encode(["error" => "Faltan datos obligatorios"]);
+    exit;
+}
+// Escapa y recoge los datos
+$sql = "INSERT INTO reservas (habitacion_id, fecha_entrada, fecha_salida, bufet, parking, total)
+        VALUES ($habitacion_id, '$fecha_entrada', '$fecha_salida', $bufet, $parking, $total)";
 if ($conn->query($sql) === TRUE) {
     echo json_encode(["success" => true, "reserva_id" => $conn->insert_id]);
 } else {

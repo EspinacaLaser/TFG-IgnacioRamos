@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2025 a las 10:04:16
+-- Tiempo de generación: 25-05-2025 a las 11:28:38
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -60,7 +60,8 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id`, `nombre`, `email`, `password`, `fecha_registro`) VALUES
-(1, 'Cliente Prueba', 'cliente@ejemplo.com', '$2y$10$O/Pi6WRCkE32uH0AwtP6/e9fP4pYOeiwNJeo9Hivo8pvTXcMQmGQW', '2025-05-21 23:51:38');
+(1, 'Cliente Prueba', 'cliente@ejemplo.com', '$2y$10$O/Pi6WRCkE32uH0AwtP6/e9fP4pYOeiwNJeo9Hivo8pvTXcMQmGQW', '2025-05-21 23:51:38'),
+(8, 'gloosito', 'correo2@gmail.com', '$2y$10$PGC9WiFFdhTSF7OV5nZbXOmW4R1qiz/fLKwCRBYI0Ez.U.2FhcOY6', '2025-05-25 10:36:37');
 
 -- --------------------------------------------------------
 
@@ -169,7 +170,10 @@ CREATE TABLE `reservas` (
   `habitacion_id` int(11) NOT NULL,
   `fecha_entrada` date NOT NULL,
   `fecha_salida` date NOT NULL,
-  `estado` enum('pendiente','pagada') DEFAULT 'pendiente'
+  `estado` enum('pendiente','pagada') DEFAULT 'pendiente',
+  `bufet` tinyint(1) DEFAULT 0,
+  `parking` tinyint(1) DEFAULT 0,
+  `total` decimal(10,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -247,7 +251,7 @@ ALTER TABLE `administradores`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `facturas`
