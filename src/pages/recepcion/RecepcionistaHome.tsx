@@ -1,38 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BotoneraRecepcionista from "../../components/recepcion/BotoneraRecepcionista";
 import TablaReservasRecepcionista from "../../components/recepcion/TablaReservasRecepcionista";
 
 /**
  * Página principal del recepcionista.
  * Permite alternar entre la vista de reservas y el control de registro.
+ * Hace fetch de las reservas reales desde el backend.
  */
 const RecepcionistaHome: React.FC = () => {
   const [vista, setVista] = useState<"reservas" | "registro">("reservas");
+  const [reservas, setReservas] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Ejemplo de datos de reservas (reemplaza por fetch real)
-  const reservas = [
-    {
-      id: 1,
-      nombre_cliente: "Juan Pérez",
-      nombre_habitacion: "101",
-      fecha_entrada: "2024-06-01",
-      fecha_salida: "2024-06-05",
-      estado: "pagada",
-    },
-    {
-      id: 2,
-      nombre_cliente: "Ana López",
-      nombre_habitacion: "202",
-      fecha_entrada: "2024-06-03",
-      fecha_salida: "2024-06-07",
-      estado: "pendiente",
-    },
-  ];
+  useEffect(() => {
+    if (vista === "reservas") {
+      setLoading(true);
+      fetch("http://localhost/hotel-api/reservas_todas.php")
+        .then(res => res.json())
+        .then(data => {
+          setReservas(data);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
+    }
+  }, [vista]);
 
   return (
     <div>
       <BotoneraRecepcionista vista={vista} setVista={setVista} />
-      {vista === "reservas" && <TablaReservasRecepcionista reservas={reservas} />}
+      {vista === "reservas" && (
+        loading ? <div>Cargando reservas...</div> :
+        <TablaReservasRecepcionista reservas={reservas} />
+      )}
       {vista === "registro" && <div>Control de Registro (próximamente)</div>}
     </div>
   );
