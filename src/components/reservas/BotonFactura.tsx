@@ -4,7 +4,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 
 /**
  * Props para el botón de descarga de factura.
- * Puedes añadir más props según lo necesites (por ejemplo, onClick).
+ * Recibe una función onClick que se ejecuta al pulsar el botón.
  */
 interface BotonFacturaProps {
   onClick?: () => void;
@@ -13,6 +13,9 @@ interface BotonFacturaProps {
 /**
  * Botón estilizado para descargar la factura de una reserva.
  * Incluye icono de descarga y estilos coherentes con el diseño principal.
+ * 
+ * Ejemplo de uso:
+ * <BotonFactura onClick={() => window.open('URL_FACTURA', '_blank')} />
  */
 const BotonFactura: React.FC<BotonFacturaProps> = ({ onClick }) => (
   <Button
