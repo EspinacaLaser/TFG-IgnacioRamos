@@ -1,22 +1,18 @@
 import React, { useState, useEffect, useCallback } from "react";
 import BotoneraRecepcionista from "../../components/recepcion/BotoneraRecepcionista";
 import TablaReservasRecepcionista from "../../components/recepcion/TablaReservasRecepcionista";
+import RegistroJornadaRecepcionista from "../../components/recepcion/RegistroJornadaRecepcionista";
 
 /**
  * Página principal del recepcionista.
  * Permite alternar entre la vista de reservas y el control de registro.
- * Hace fetch de las reservas reales desde el backend.
- * Gestiona el estado de las reservas y la recarga tras borrar.
  */
 const RecepcionistaHome: React.FC = () => {
   const [vista, setVista] = useState<"reservas" | "registro">("reservas");
   const [reservas, setReservas] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  /**
-   * Función para cargar las reservas desde el backend.
-   * Se usa también para refrescar la tabla tras borrar.
-   */
+  // Función para cargar reservas (igual que antes)
   const fetchReservas = useCallback(() => {
     setLoading(true);
     fetch("http://localhost/hotel-api/reservas_todas.php")
@@ -28,7 +24,6 @@ const RecepcionistaHome: React.FC = () => {
       .catch(() => setLoading(false));
   }, []);
 
-  // Carga las reservas al montar el componente o al cambiar de vista
   useEffect(() => {
     if (vista === "reservas") {
       fetchReservas();
@@ -46,9 +41,7 @@ const RecepcionistaHome: React.FC = () => {
         )
       )}
       {vista === "registro" && (
-        <div style={{ textAlign: "center", marginTop: 40 }}>
-          Control de Registro (próximamente)
-        </div>
+        <RegistroJornadaRecepcionista />
       )}
     </div>
   );
