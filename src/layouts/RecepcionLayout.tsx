@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import RecepcionistaHeader from "../components/ui/header/RecepcionistaHeader";
-import Footer from "../components/ui/footer/Footer";
+
+import HeaderPersonalAutorizado from "../components/ui/header/HeaderPersonalAutorizado";
+import FooterPersonalAutorizado from "../components/ui/footer/FooterPersonalAutorizado";
 
 /**
  * Layout principal para la interfaz de recepcionista.
@@ -21,11 +22,11 @@ const RecepcionistaLayout: React.FC = () => {
 
   return (
     <>
-      <RecepcionistaHeader />
+      <HeaderPersonalAutorizado />
       <main className="bg-green-50 min-h-screen p-4">
         <Outlet />
       </main>
-      <Footer />
+      <FooterPersonalAutorizado />
     </>
   );
 };

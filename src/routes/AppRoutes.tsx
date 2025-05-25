@@ -48,10 +48,12 @@ const AppRoutes = () => (
     </Route>
 
     {/* Rutas privadas para recepcionistas */}
+    // Ejemplo de rutas protegidas para recepcionista
     <Route path="/recepcionista" element={<RecepcionistaLayout />}>
       <Route path="home" element={<RecepcionistaHome />} />
       <Route path="reservas" element={<RecepcionistaReservas />} />
-      <Route path="horario" element={<RecepcionistaHorario />} />
+      <Route path="horarios" element={<RecepcionistaHorario />} />
+      {/* ...otras rutas de recepcionista */}
     </Route>
 
     {/* Rutas privadas para administradores */}

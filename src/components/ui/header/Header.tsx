@@ -11,7 +11,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import Navbar from "./Navbar";
 import Logo from "./Logo";
-import LoginButton from "./LoginButton";
+import LoginButton from "./LogoutButton";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
