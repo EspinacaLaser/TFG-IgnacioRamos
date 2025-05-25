@@ -31,7 +31,6 @@ $pdf->Cell(0,8,'Datos del cliente:',0,1);
 $pdf->SetFont('Arial','',12);
 $pdf->Cell(0,6,'Nombre: '.$row['cliente'],0,1);
 $pdf->Cell(0,6,'Email: '.$row['email'],0,1);
-//$pdf->Cell(0,6,'Telefono: '.$row['telefono'],0,1); // Elimina esta línea si no tienes teléfono
 $pdf->Ln(3);
 
 $pdf->SetFont('Arial','B',12);
