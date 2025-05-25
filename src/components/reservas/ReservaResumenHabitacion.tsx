@@ -12,6 +12,7 @@ import ReservaExtrasSelector from "./ReservaExtrasSelector";
 interface ReservaResumenHabitacionProps {
   imagen: string;
   precioBase: number;
+  noches: number;
   extras: { bufet: boolean; parking: boolean };
   onExtrasChange: (extras: { bufet: boolean; parking: boolean }) => void;
 }
@@ -19,12 +20,13 @@ interface ReservaResumenHabitacionProps {
 const ReservaResumenHabitacion: React.FC<ReservaResumenHabitacionProps> = ({
   imagen,
   precioBase,
+  noches,
   extras,
   onExtrasChange,
 }) => (
   <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
     <ReservaImagenHabitacion imagen={imagen} />
-    <ReservaPrecioDetalle precioBase={precioBase} extras={extras} />
+    <ReservaPrecioDetalle precioBase={precioBase} noches={noches} extras={extras} />
     <ReservaExtrasSelector extras={extras} onExtrasChange={onExtrasChange} />
   </Box>
 );

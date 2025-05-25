@@ -3,36 +3,38 @@ import Typography from "@mui/material/Typography";
 
 interface ReservaPrecioDetalleProps {
   precioBase: number | string;
+  noches: number;
   extras: { bufet: boolean; parking: boolean };
 }
 
 const PRECIO_BUFET = 8;
 const PRECIO_PARKING = 12;
 
-const ReservaPrecioDetalle: React.FC<ReservaPrecioDetalleProps> = ({ precioBase, extras }) => {
-  // Asegúrate de que precioBase es un número
-  const base = Number(precioBase) || 0;
+const ReservaPrecioDetalle: React.FC<ReservaPrecioDetalleProps> = ({ precioBase, noches, extras }) => {
+  // Calcula el precio base total por noches
+  const base = (Number(precioBase) || 0) * (noches || 0);
   const iva = +(base * 0.10).toFixed(2);
   const extrasTotal =
-    (extras.bufet ? PRECIO_BUFET : 0) + (extras.parking ? PRECIO_PARKING : 0);
+    (extras.bufet ? PRECIO_BUFET : 0) * (noches || 0) +
+    (extras.parking ? PRECIO_PARKING : 0) * (noches || 0);
   const total = +(base + iva + extrasTotal).toFixed(2);
 
   return (
     <Box sx={{ width: "100%", mb: 2 }}>
       <Typography>
-        Precio base: <b>{base.toFixed(2)} €</b>
+        Precio base ({noches} noche{noches === 1 ? "" : "s"}): <b>{base.toFixed(2)} €</b>
       </Typography>
       <Typography>
         10% de IVA: <b>{iva.toFixed(2)} €</b>
       </Typography>
       {extras.bufet && (
         <Typography>
-          Bufet desayuno: <b>{PRECIO_BUFET.toFixed(2)} €</b>
+          Bufet desayuno: <b>{((PRECIO_BUFET) * (noches || 0)).toFixed(2)} €</b>
         </Typography>
       )}
       {extras.parking && (
         <Typography>
-          Plaza de garaje: <b>{PRECIO_PARKING.toFixed(2)} €</b>
+          Plaza de garaje: <b>{((PRECIO_PARKING) * (noches || 0)).toFixed(2)} €</b>
         </Typography>
       )}
       <Typography sx={{ mt: 1, fontWeight: "bold", color: "primary.main" }}>

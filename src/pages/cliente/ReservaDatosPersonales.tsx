@@ -2,8 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReservaLayout from "../../layouts/ReservaLayout";
 import ReservaResumenHabitacion from "../../components/reservas/ReservaResumenHabitacion";
+import ReservaFormularioDatos from "../../components/reservas/ReservaFormularioDatos";
+import ReservaCondicionalesInfo from "../../components/reservas/ReservaCondicionalesInfo";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+
+const PRECIO_BUFET = 8;
+const PRECIO_PARKING = 12;
 
 const ReservaDatosPersonales: React.FC = () => {
   const { habitacionId } = useParams();
@@ -11,12 +16,32 @@ const ReservaDatosPersonales: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [extras, setExtras] = useState({ bufet: false, parking: false });
 
+  // Estado para fechas y datos personales
+  const [fechas, setFechas] = useState({ entrada: "", salida: "" });
+  const [datos, setDatos] = useState({ nombre: "", email: "", telefono: "", prefijo: "" });
+
+  // Calcula el número de noches
+  const calcularNoches = () => {
+    if (!fechas.entrada || !fechas.salida) return 0;
+    const entrada = new Date(fechas.entrada);
+    const salida = new Date(fechas.salida);
+    const diff = (salida.getTime() - entrada.getTime()) / (1000 * 60 * 60 * 24);
+    return diff > 0 ? diff : 0;
+  };
+  const noches = calcularNoches();
+
+  // Calcula el total
+  const base = (Number(habitacion?.precio_base) || 0) * (noches || 0);
+  const iva = +(base * 0.10).toFixed(2);
+  const extrasTotal =
+    (extras.bufet ? PRECIO_BUFET : 0) * (noches || 0) +
+    (extras.parking ? PRECIO_PARKING : 0) * (noches || 0);
+  const total = +(base + iva + extrasTotal).toFixed(2);
+
   // Scroll al top al montar el componente
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
-
-  console.log("habitacionId param:", habitacionId);
 
   useEffect(() => {
     if (!habitacionId) {
@@ -54,12 +79,23 @@ const ReservaDatosPersonales: React.FC = () => {
         <ReservaResumenHabitacion
           imagen={habitacion.imagenes && habitacion.imagenes.length > 0 ? `http://localhost${habitacion.imagenes[0]}` : ""}
           precioBase={habitacion.precio_base}
+          noches={noches}
           extras={extras}
           onExtrasChange={setExtras}
         />
       }
       derecha={
-        <Box />
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          <ReservaFormularioDatos
+            fechas={fechas}
+            onFechasChange={setFechas}
+            datos={datos}
+            onDatosChange={setDatos}
+            noches={noches}
+            total={total}
+          />
+          <ReservaCondicionalesInfo />
+        </Box>
       }
     />
   );

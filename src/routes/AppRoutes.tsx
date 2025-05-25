@@ -10,7 +10,8 @@ import AdminLayout from '../layouts/AdminLayout';
 import ClienteHome from '../pages/cliente/ClienteHome';
 import ClienteReservas from '../pages/cliente/ClienteReservas';
 import ClienteFacturas from '../pages/cliente/ClienteFacturas';
-import ClienteHabitaciones from '../pages/cliente/Habitaciones'; // <-- Importa la página de habitaciones
+import ClienteHabitaciones from '../pages/cliente/Habitaciones';
+import PasarelaPago from '../pages/cliente/PasarelaPago';
 
 import RecepcionistaHome from '../pages/recepcion/RecepcionistaHome';
 import RecepcionistaReservas from '../pages/recepcion/RecepcionistaReservas';
@@ -65,7 +66,8 @@ const AppRoutes = () => (
       <Route path="habitaciones" element={<ClienteHabitaciones />} />
       <Route path="reservas" element={<ClienteReservas />} />
       <Route path="facturas" element={<ClienteFacturas />} />
-      <Route path="/cliente/reservar/:habitacionId" element={<ReservaDatosPersonales />} />
+      <Route path="reservar/:habitacionId" element={<ReservaDatosPersonales />} />
+      <Route path="pago" element={<PasarelaPago />} /> 
     </Route>
     {/* Ruta para página no encontrada */}
     <Route path="*" element={<NotFound />} />

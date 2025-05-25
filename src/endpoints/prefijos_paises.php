@@ -1,5 +1,6 @@
 <?php
 //endpoints para el selector de prefijos telefonicos de los países
+header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json');
 $prefijos = [
     ["codigo" => "+34", "pais" => "España"],
