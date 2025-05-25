@@ -1,7 +1,16 @@
 <?php
+// Permitir CORS y responder a preflight requests
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
 // Endpoint: Registra la hora de entrada de un recepcionista en la tabla 'fichajes'.
 
-header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 include 'conexion.php';
 
