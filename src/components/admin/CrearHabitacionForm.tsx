@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Paper, Typography, Button, Box, useTheme } from "@mui/material";
+import { Paper, Typography, Box, useTheme } from "@mui/material";
 import HabitacionDatosBasicos from "./HabitacionDatosBasicos";
 import HabitacionDescripcion from "./HabitacionDescripcion";
 import HabitacionImagenes from "./HabitacionImagenes";
