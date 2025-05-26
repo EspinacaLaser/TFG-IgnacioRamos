@@ -3,7 +3,6 @@ import { TextField, MenuItem, Stack } from "@mui/material";
 
 const estados = [
   { value: "disponible", label: "Disponible" },
-  { value: "ocupada", label: "Ocupada" },
   { value: "mantenimiento", label: "Mantenimiento" },
 ];
 

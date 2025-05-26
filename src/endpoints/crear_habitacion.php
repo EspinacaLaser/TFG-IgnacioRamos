@@ -38,7 +38,7 @@ if (!$numero || !$capacidad || !$precio_base) {
     echo json_encode(['error' => 'Faltan campos obligatorios']);
     exit();
 }
-if (!in_array($estado, ['disponible', 'ocupada', 'mantenimiento'])) {
+if (!in_array($estado, ['disponible', 'mantenimiento'])) {
     http_response_code(400);
     echo json_encode(['error' => 'Estado no válido']);
     exit();
