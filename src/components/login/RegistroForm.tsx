@@ -13,6 +13,7 @@ import Box from "@mui/material/Box";
 const RegistroForm: React.FC = () => {
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
+  const [telefono, setTelefono] = useState(""); // Nuevo estado para teléfono
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -27,13 +28,24 @@ const RegistroForm: React.FC = () => {
       const res = await fetch("http://localhost/hotel-api/registro_cliente.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nombre, email, password }),
+        body: JSON.stringify({ nombre, email, telefono, password }), // Incluye teléfono
       });
       const data = await res.json();
       if (data.success) {
         // Login automático tras registro
-        localStorage.setItem("user", JSON.stringify({ email, nombre, rol: "cliente" }));
-        navigate("/cliente/home");
+        // Hacemos login real para obtener el cliente_id
+        const loginRes = await fetch("http://localhost/hotel-api/login_cliente.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+        const loginData = await loginRes.json();
+        if (loginData.success) {
+          localStorage.setItem("user", JSON.stringify(loginData.user));
+          navigate("/cliente/home");
+        } else {
+          setError("Registro correcto, pero error al iniciar sesión automáticamente.");
+        }
       } else {
         setError(data.error || "Error desconocido");
       }
@@ -62,6 +74,14 @@ const RegistroForm: React.FC = () => {
         onChange={e => setEmail(e.target.value)}
         placeholder="Correo electrónico"
         name="email"
+        required
+      />
+      <InputField
+        type="tel"
+        value={telefono}
+        onChange={e => setTelefono(e.target.value)}
+        placeholder="Teléfono"
+        name="telefono"
         required
       />
       <InputField

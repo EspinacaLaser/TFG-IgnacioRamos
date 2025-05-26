@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2025 a las 23:21:47
+-- Tiempo de generación: 26-05-2025 a las 12:54:14
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -61,7 +61,8 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id`, `nombre`, `email`, `telefono`, `password`, `fecha_registro`) VALUES
-(1, 'Cliente Prueba', 'cliente@ejemplo.com', '600840728', '$2y$10$O/Pi6WRCkE32uH0AwtP6/e9fP4pYOeiwNJeo9Hivo8pvTXcMQmGQW', '2025-05-21 23:51:38');
+(1, 'Cliente Prueba', 'cliente@ejemplo.com', '600840728', '$2y$10$O/Pi6WRCkE32uH0AwtP6/e9fP4pYOeiwNJeo9Hivo8pvTXcMQmGQW', '2025-05-21 23:51:38'),
+(12, 'gloosito', 'nachoramosmartin2004@gmail.com', '600840728', '$2y$10$ee1KES4ayjM53Cv3..9UTORU18vTG.dgvvoyiX82u5DaDHb0Z6HQe', '2025-05-26 12:53:05');
 
 -- --------------------------------------------------------
 
@@ -88,6 +89,14 @@ CREATE TABLE `fichajes` (
   `tipo` enum('entrada','salida') NOT NULL,
   `fecha_hora` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `fichajes`
+--
+
+INSERT INTO `fichajes` (`id`, `recepcionista_id`, `tipo`, `fecha_hora`) VALUES
+(9, 2, 'entrada', '2025-05-26 11:18:43'),
+(10, 2, 'salida', '2025-05-26 11:19:02');
 
 -- --------------------------------------------------------
 
@@ -266,7 +275,7 @@ ALTER TABLE `administradores`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `facturas`
@@ -278,7 +287,7 @@ ALTER TABLE `facturas`
 -- AUTO_INCREMENT de la tabla `fichajes`
 --
 ALTER TABLE `fichajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `habitaciones`

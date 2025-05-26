@@ -21,10 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $input = json_decode(file_get_contents('php://input'), true);
 $nombre = $input['nombre'] ?? '';
 $email = $input['email'] ?? '';
+$telefono = $input['telefono'] ?? '';
 $password = $input['password'] ?? '';
 
 // Valida que se hayan enviado todos los datos
-if (!$nombre || !$email || !$password) {
+if (!$nombre || !$email || !$password || !$telefono) {
     echo json_encode(['success' => false, 'error' => 'Faltan datos']);
     exit;
 }
@@ -59,8 +60,8 @@ $stmt->close();
 $hash = password_hash($password, PASSWORD_DEFAULT);
 
 // Insertar el nuevo cliente
-$stmt = $conn->prepare("INSERT INTO clientes (nombre, email, password) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $nombre, $email, $hash);
+$stmt = $conn->prepare("INSERT INTO clientes (nombre, email, telefono, password) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("ssss", $nombre, $email, $telefono, $hash);
 
 if ($stmt->execute()) {
     echo json_encode(['success' => true, 'message' => 'Registro exitoso']);

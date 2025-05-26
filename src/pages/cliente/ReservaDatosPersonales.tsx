@@ -6,6 +6,7 @@ import ReservaFormularioDatos from "../../components/reservas/ReservaFormularioD
 import ReservaCondicionalesInfo from "../../components/reservas/ReservaCondicionalesInfo";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import { useAuth } from "../../context/AuthContext"; // <-- Importa el hook
 
 const PRECIO_BUFET = 8;
 const PRECIO_PARKING = 12;
@@ -16,9 +17,27 @@ const ReservaDatosPersonales: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [extras, setExtras] = useState({ bufet: false, parking: false });
 
+  // Obtén el usuario autenticado (del contexto)
+  const { usuario } = useAuth();
+
   // Estado para fechas y datos personales
   const [fechas, setFechas] = useState({ entrada: "", salida: "" });
-  const [datos, setDatos] = useState({ nombre: "", email: "", telefono: "", prefijo: "" });
+  const [datos, setDatos] = useState({
+    nombre: usuario?.nombre || "",
+    email: usuario?.email || "",
+    telefono: usuario?.telefono || "",
+    prefijo: ""
+  });
+
+  // Si el usuario cambia (por ejemplo, tras login), actualiza los datos
+  useEffect(() => {
+    setDatos(prev => ({
+      ...prev,
+      nombre: usuario?.nombre || "",
+      email: usuario?.email || "",
+      telefono: usuario?.telefono || ""
+    }));
+  }, [usuario]);
 
   // Calcula el número de noches
   const calcularNoches = () => {
@@ -94,7 +113,7 @@ const ReservaDatosPersonales: React.FC = () => {
             onDatosChange={setDatos}
             noches={noches}
             total={total}
-            habitacion_id={habitacion.id} // <-- PASA EL ID AQUÍ
+            habitacion_id={habitacion.id}
           />
           <ReservaCondicionalesInfo />
         </Box>

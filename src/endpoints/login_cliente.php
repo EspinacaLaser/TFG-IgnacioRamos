@@ -40,8 +40,8 @@ if ($conn->connect_error) {
     exit;
 }
 
-// Busca el usuario por email
-$stmt = $conn->prepare("SELECT id, nombre, email, password FROM clientes WHERE email = ?");
+// Busca el usuario por email e incluye el teléfono
+$stmt = $conn->prepare("SELECT id, nombre, email, telefono, password FROM clientes WHERE email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -52,9 +52,10 @@ if ($row = $result->fetch_assoc()) {
         echo json_encode([
             'success' => true,
             'user' => [
-                'cliente_id' => $row['id'], // CAMBIO: ahora es cliente_id
+                'cliente_id' => $row['id'],
                 'nombre' => $row['nombre'],
                 'email' => $row['email'],
+                'telefono' => $row['telefono'], // Ahora también devuelve el teléfono
                 'rol' => 'cliente'
             ]
         ]);

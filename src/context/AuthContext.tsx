@@ -8,7 +8,7 @@ interface Usuario {
   cliente_id: number;
   nombre: string;
   email: string;
-  // ...otros campos que quieras guardar
+  telefono: string;
 }
 
 /**
