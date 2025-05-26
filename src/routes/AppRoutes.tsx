@@ -15,8 +15,6 @@ import PasarelaPago from '../pages/cliente/PasarelaPago';
 import RecepcionistaHome from '../pages/recepcion/RecepcionistaHome';
 
 import AdminHome from '../pages/admin/AdminHome';
-import AdminHabitaciones from '../pages/admin/AdminHabitaciones';
-import AdminHorarios from '../pages/admin/AdminHorario';
 
 import Login from '../pages/shared/Login';
 import Registro from '../pages/shared/Registro';
@@ -53,8 +51,6 @@ const AppRoutes = () => (
     {/* Rutas privadas para administradores */}
     <Route path="/admin" element={<AdminLayout />}>
       <Route path="home" element={<AdminHome />} />
-      <Route path="habitaciones" element={<AdminHabitaciones />} />
-      <Route path="horarios" element={<AdminHorarios />} />
     </Route>
     {/* Ruta para reservar una habitación (cliente) */}
     <Route path="/cliente" element={<ClienteLayout />}>

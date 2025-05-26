@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import AdminHeader from "../components/ui/header/AdminHeader";
-import Footer from "../components/ui/footer/Footer";
+import HeaderPersonalAutorizado from "../components/ui/header/HeaderPersonalAutorizado";
+import FooterPersonalAutorizado from "../components/ui/footer/FooterPersonalAutorizado";
 
 /**
  * Layout principal para la interfaz de administrador.
  * Protege las rutas privadas comprobando que el usuario esté autenticado y tenga rol de admin.
+ * Muestra el header y footer del personal autorizado.
  */
 const AdminLayout: React.FC = () => {
   const navigate = useNavigate();
@@ -21,11 +22,11 @@ const AdminLayout: React.FC = () => {
 
   return (
     <>
-      <AdminHeader />
+      <HeaderPersonalAutorizado />
       <main className="bg-yellow-50 min-h-screen p-4">
         <Outlet />
       </main>
-      <Footer />
+      <FooterPersonalAutorizado />
     </>
   );
 };
