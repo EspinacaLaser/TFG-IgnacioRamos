@@ -21,10 +21,19 @@ const ClienteHome: React.FC = () => (
     <Typography variant="body1" gutterBottom>
       Desde aquí puedes ver habitaciones, hacer reservas y consultar tus facturas.
     </Typography>
-    {/* Aquí puedes añadir botones o enlaces a otras secciones */}
-    <Box mt={3}>
-      {/* Ejemplo de botón MUI para futuras acciones */}
-      {/* <Button variant="contained" color="primary">Ver habitaciones</Button> */}
+    <Box mt={4} display="flex" justifyContent="center">
+      <Box
+        component="img"
+        src="../public/individual1.jpg" 
+        alt="Habitación destacada"
+        sx={{
+          width: { xs: "100%", sm: 400 },
+          height: 220,
+          objectFit: "cover",
+          borderRadius: 2,
+          boxShadow: 2,
+        }}
+      />
     </Box>
   </Paper>
 );
